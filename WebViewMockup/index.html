@@ -276,9 +276,9 @@
     const COMMON_TEXTURE = `${ROOT}/common/texture/`;
 
     const HIDE_MATERIAL_PATTERN = /collision|invisible|occluder|environtment|\$PFD_|\$MFD_|\$DRM_|\$EFB_|\$RegistrationNumber|sunshade|suncover|(?:^FROST$)|(?:^FSS_Tecnam12_Checklist$)|GeoDecalFrosted/i;
-    const HIDE_NODE_PATTERN = /collision|hitbox|drone|clickspot|occluder|hider|sunshade|suncover|_Add$|(?:^DEICE_[1-4]$)|(?:^DEICE_LIGHT$)|FROSTED_|CHECKLIST|\$RegistrationNumber/i;
-    // MSFS names frost-overlay meshes FROSTED_*; for belly/cargo doors they are the visible exterior panels.
-    const EXTERIOR_DOOR_PANEL_PATTERN = /^(?:FROSTED_Cube\.153|FROSTED_Cube\.165|BASE_Cube\.042)$/i;
+    const HIDE_NODE_PATTERN = /collision|hitbox|drone|clickspot|occluder|hider|sunshade|suncover|_Add$|(?:^DEICE_[1-4]$)|(?:^DEICE_LIGHT$)|CHECKLIST|\$RegistrationNumber/i;
+    // MSFS names some exterior panel meshes FROSTED_* (belly/window infill, door skins) — do not hide by prefix.
+    const EXTERIOR_DOOR_PANEL_PATTERN = /^(?:FROSTED_Cube\.153|FROSTED_Cube\.165|BASE_Cube\.041|BASE_Cube\.042)$/i;
     const BELLY_DOOR_CLOSED_ANIMS = ['Front_baggage', 'EXT_Front_baggage_handle', 'Cargo_Door'];
     const PROP_STILL_PATTERN = /prop_still|Prop_still/i;
     const HIDE_PASSENGER_PATTERN = /Passenger_Group/i;
@@ -290,7 +290,7 @@
     const EXTERIOR_CAMERA_AZIMUTH = new THREE.Vector3(0.9, 0.42, 1.05).normalize();
     const LIVERY_DECAL_SURFACE_OFFSET = 0.006;
 
-    const LIVERY_DECAL_NAME_PATTERN = /^(?:LIVERY_|regnumber_|TECNAM12_LIVERY)/i;
+    const LIVERY_DECAL_NAME_PATTERN = /^(?:regnumber_|TECNAM12_(?:DECAL|LIVERY))/i;
 
     function isInLiveryScene(object3D) {
       let node = object3D;
@@ -1123,7 +1123,13 @@
 
     function isLiveryDecalMaterial(mat) {
       const name = mat?.name || '';
-      return /TECNAM12_(?:DECAL|LIVERY)|GeoDecal|_Decal_/i.test(name);
+      return /^TECNAM12_(?:DECAL|LIVERY)/i.test(name) || /^GeoDecal/i.test(name);
+    }
+
+    function shouldConfigureLiveryDecalRendering(obj, mat) {
+      if (isLiveryDecalMaterial(mat)) return true;
+      if (!obj?.name) return false;
+      return /^(?:regnumber_|TECNAM12_(?:DECAL|LIVERY))/i.test(obj.name);
     }
 
     function isGlassMaterial(mat) {
@@ -1144,7 +1150,6 @@
       object3D.traverse((obj) => {
         if (!obj.isMesh) return;
         const keepDoorPanel = isExteriorDoorPanel(obj);
-        const inLiveryScene = isInLiveryScene(obj);
         const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
         materials.forEach((mat) => {
           if (!mat) return;
@@ -1166,7 +1171,7 @@
               mat.depthWrite = true;
             }
           }
-          if (isLiveryDecalMaterial(mat) || LIVERY_DECAL_NAME_PATTERN.test(obj.name || '')) {
+          if (shouldConfigureLiveryDecalRendering(obj, mat)) {
             configureLiveryDecalRendering(obj, mat);
           }
           mat.needsUpdate = true;
