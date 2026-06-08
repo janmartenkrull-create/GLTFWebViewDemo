@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo>
+    <LODS>
+        <LOD minSize="50" ModelFile="Chair_SMP.gltf" />
+        <LOD minSize="40" ModelFile="Chair_SMP.gltf" />
+        <LOD minSize="30" ModelFile="Chair_SMP.gltf" />
+        <LOD minSize="20" ModelFile="Chair_SMP.gltf" />
+    </LODS>
+
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\SafetyCard.xml" />
+
+        <Component ID="PASS_SAFETY_CARD_GROUP_SMP">
+            <UseTemplate Name="FSS_PASS_SAFETY_CARD_GROUP">
+                <ID_0>8</ID_0>
+                <ID_1>9</ID_1>
+            </UseTemplate>
+        </Component>
+    </Behaviors>
+</ModelInfo>

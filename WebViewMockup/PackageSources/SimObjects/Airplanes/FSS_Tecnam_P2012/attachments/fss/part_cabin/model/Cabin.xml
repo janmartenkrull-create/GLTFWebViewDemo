@@ -1,0 +1,90 @@
+<ModelInfo>
+    <LODS>
+        <LOD minSize="110" ModelFile="FSS_Tecnam_P2012_Cabin_LOD00.gltf" />
+        <LOD minSize="70" ModelFile="FSS_Tecnam_P2012_Cabin_LOD01.gltf" />
+        <LOD minSize="40" ModelFile="FSS_Tecnam_P2012_Cabin_LOD02.gltf" />
+        <LOD minSize="20" ModelFile="FSS_Tecnam_P2012_Cabin_LOD03.gltf" />
+        <LOD minSize="10" ModelFile="FSS_Tecnam_P2012_Cabin_LOD04.gltf" />
+    </LODS>
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="Asobo\Exterior.xml" />
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\ElectricalConst.xml" />
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\PassengerLight.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\Templates.xml" />
+
+        <Component ID="PASSENGER_LIGHTS">
+            <UseTemplate Name="FSS_PASSENGER_LIGHTS"></UseTemplate>
+        </Component>
+
+        <Component ID="FAN_NOZZLES_CABIN">
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>FRONT_L</ID>
+				<NODE_ID_1>FAN_NOZZLES_FRONT_01</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_FRONT_02</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_FRONT_L</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>FRONT_R</ID>
+				<NODE_ID_1>FAN_NOZZLES_FRONT_03</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_FRONT_04</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_FRONT_R</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_01</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_02</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_1</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_03</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_04</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_1</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_2</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_05</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_06</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_2</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_3</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_07</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_08</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_3</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_4</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_09</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_10</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_4</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_5</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_11</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_12</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_5</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_6</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_13</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_14</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_6</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_6</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_15</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_16</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_7</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="FSS_FAN_NOZZLE">
+				<ID>BACK_6</ID>
+				<NODE_ID_1>FAN_NOZZLES_BACK_17</NODE_ID_1>
+				<NODE_ID_2>FAN_NOZZLES_BACK_18</NODE_ID_2>
+				<ANIM_NAME>FAN_NOZZLES_BACK_8</ANIM_NAME>
+			</UseTemplate>
+		</Component>
+
+    </Behaviors>
+</ModelInfo>

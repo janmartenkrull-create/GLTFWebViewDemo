@@ -1,0 +1,31 @@
+<ModelInfo>
+    <LODS>
+        <LOD minSize="110" ModelFile="VIP_CABIN_LOD00.gltf" />
+        <LOD minSize="70" ModelFile="VIP_CABIN_LOD00.gltf" />
+        <LOD minSize="40" ModelFile="VIP_CABIN_LOD00.gltf" />
+        <LOD minSize="20" ModelFile="VIP_CABIN_LOD00.gltf" />
+        <LOD minSize="10" ModelFile="VIP_CABIN_LOD00.gltf" />
+    </LODS>
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="Asobo\Exterior.xml" />
+
+        <Component ID="PASSENGER_LIGHTS">
+			<UseTemplate Name="FSS_PASSENGER_LIGHTS"></UseTemplate>
+		</Component>
+
+        <Component ID="Baggage_Door" Node="Baggage_Door">
+			<UseTemplate Name="ASOBO_GT_Toggle_Variable_Anim">
+				<ANIM_NAME>Baggage_Door</ANIM_NAME>
+				<ANIM_LAG>50</ANIM_LAG>
+				<VAR_NAME>Pos</VAR_NAME>
+				<VAR_SCOPE>O</VAR_SCOPE>
+				<TOOLTIP_TITLE_IS_DYNAMIC>True</TOOLTIP_TITLE_IS_DYNAMIC>
+				<TOOLTIP_TITLE>'Baggage Door'</TOOLTIP_TITLE>
+				<WWISE_EVENT_1>slide_door_open</WWISE_EVENT_1>
+				<WWISE_EVENT_2>slide_door_close</WWISE_EVENT_2>
+			</UseTemplate>
+    	</Component>	
+
+    </Behaviors>
+</ModelInfo>

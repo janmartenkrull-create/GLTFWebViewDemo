@@ -1,0 +1,1498 @@
+{
+    "asset" : {
+        "extensions" : {
+            "ASOBO_normal_map_convention" : {
+                "tangent_space_convention" : "DirectX"
+            }
+        },
+        "generator" : "Khronos glTF Blender I/O v1.8.19 and Asobo Studio MSFS Blender I/O v1.3.0",
+        "version" : "2.0"
+    },
+    "extensionsUsed" : [
+        "ASOBO_normal_map_convention",
+        "ASOBO_unique_id",
+        "ASOBO_material_blend_gbuffer",
+        "ASOBO_material_shadow_options"
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                7,
+                9,
+                11,
+                12,
+                13,
+                14,
+                31,
+                36,
+                38,
+                46,
+                50
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Pivot_FrontDoor.001"
+                }
+            },
+            "name" : "Pivot_FrontDoor.001",
+            "translation" : [
+                0.7945328950881958,
+                0.40186551213264465,
+                3.736912727355957
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Pivot_FrontDoor.002"
+                }
+            },
+            "name" : "Pivot_FrontDoor.002",
+            "translation" : [
+                -0.7946386337280273,
+                0.40182462334632874,
+                3.7393646240234375
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "MARKING_ANIM"
+                }
+            },
+            "name" : "MARKING_ANIM",
+            "translation" : [
+                0,
+                -0.40791288018226624,
+                5.466823101043701
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_SAFETY_Switch_ELT"
+                }
+            },
+            "name" : "Empty_SAFETY_Switch_ELT",
+            "scale" : [
+                0.02210145629942417,
+                0.02210145629942417,
+                0.02210145629942417
+            ],
+            "translation" : [
+                0.1642821580171585,
+                0.6739806532859802,
+                3.8516502380371094
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_still_right_blade"
+                }
+            },
+            "name" : "Empty_Prop_still_right_blade",
+            "scale" : [
+                0.15361304581165314,
+                0.15361304581165314,
+                0.15361304581165314
+            ],
+            "translation" : [
+                -1.6010839939117432,
+                1.1663618087768555,
+                0.4053954780101776
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_still_left_balde"
+                }
+            },
+            "name" : "Empty_Prop_still_left_balde",
+            "scale" : [
+                0.15361304581165314,
+                0.15361304581165314,
+                0.15361304581165314
+            ],
+            "translation" : [
+                1.6005176305770874,
+                1.1663628816604614,
+                0.4053957164287567
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_Prop_Right"
+                }
+            },
+            "mesh" : 0,
+            "name" : "LIVERY_Prop_Right"
+        },
+        {
+            "children" : [
+                6
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_Right"
+                }
+            },
+            "name" : "Empty_Prop_Right",
+            "translation" : [
+                -2.2361998558044434,
+                1.4452662467956543,
+                2.6969008445739746
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_Prop_Left"
+                }
+            },
+            "mesh" : 1,
+            "name" : "LIVERY_Prop_Left"
+        },
+        {
+            "children" : [
+                8
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_Left"
+                }
+            },
+            "name" : "Empty_Prop_Left",
+            "translation" : [
+                2.236196279525757,
+                1.4452660083770752,
+                2.6969010829925537
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Elevator_Trim"
+                }
+            },
+            "name" : "Empty_Elevator_Trim",
+            "scale" : [
+                6.91848087310791,
+                6.91848087310791,
+                6.91848087310791
+            ],
+            "translation" : [
+                0,
+                -0.43526744842529297,
+                -2.2754745483398438
+            ]
+        },
+        {
+            "children" : [
+                10
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Elevator"
+                }
+            },
+            "name" : "Empty_Elevator",
+            "scale" : [
+                0.14454039931297302,
+                0.14454039931297302,
+                0.14454039931297302
+            ],
+            "translation" : [
+                0,
+                0.680353045463562,
+                -5.261984348297119
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_03"
+                }
+            },
+            "name" : "Empty_Back_Door_03",
+            "rotation" : [
+                0,
+                0.0449993722140789,
+                0,
+                0.9989870190620422
+            ],
+            "translation" : [
+                0.6727331876754761,
+                1.188260555267334,
+                -1.0380429029464722
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_02"
+                }
+            },
+            "name" : "Empty_Back_Door_02",
+            "translation" : [
+                0.707481324672699,
+                0.5695831775665283,
+                -1.9556365013122559
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_01"
+                }
+            },
+            "name" : "Empty_Back_Door_01",
+            "rotation" : [
+                0,
+                0.022859767079353333,
+                0,
+                0.9997386932373047
+            ],
+            "translation" : [
+                0.7138089537620544,
+                -0.030736953020095825,
+                -0.9987364411354065
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Wheel_Front_Rot"
+                }
+            },
+            "name" : "Empty_Wheel_Front_Rot",
+            "rotation" : [
+                0.05560072883963585,
+                -1.925915427136715e-08,
+                -1.9259150718653473e-08,
+                0.9984530806541443
+            ],
+            "scale" : [
+                1.3541103601455688,
+                1.3541101217269897,
+                1.3541102409362793
+            ],
+            "translation" : [
+                -3.6545793591358233e-07,
+                -1.913847677040395,
+                2.288818359375e-05
+            ]
+        },
+        {
+            "children" : [
+                15
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01"
+                }
+            },
+            "name" : "Bone_LG_F_01",
+            "rotation" : [
+                -0.05560072511434555,
+                1.925915427136715e-08,
+                1.9259152495010312e-08,
+                0.9984530806541443
+            ],
+            "scale" : [
+                1,
+                1.0000001192092896,
+                1
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_03"
+                }
+            },
+            "name" : "Bone_LG_F_03",
+            "rotation" : [
+                -0.4934808015823364,
+                -0.0071626040153205395,
+                0.008239813148975372,
+                0.8696882128715515
+            ],
+            "scale" : [
+                1,
+                1.0000001192092896,
+                1
+            ],
+            "translation" : [
+                -1.8321957284683776e-09,
+                0.8420483469963074,
+                -3.599288200817341e-09
+            ]
+        },
+        {
+            "children" : [
+                17
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_02"
+                }
+            },
+            "name" : "Bone_LG_F_02",
+            "rotation" : [
+                -0.9785639047622681,
+                -0.0021457422990351915,
+                -0.0021456009708344936,
+                0.20592156052589417
+            ],
+            "scale" : [
+                0.9999999403953552,
+                1,
+                1.0000001192092896
+            ],
+            "translation" : [
+                -0.0047514112666249275,
+                1.3542624711990356,
+                -0.46544748544692993
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.003"
+                }
+            },
+            "name" : "Bone_LG_F_01.003",
+            "rotation" : [
+                -0.5891526341438293,
+                0.018690286204218864,
+                0.021225392818450928,
+                0.807526707649231
+            ],
+            "scale" : [
+                1.0000001192092896,
+                0.9999998211860657,
+                0.9999998807907104
+            ],
+            "translation" : [
+                0.28510385751724243,
+                -0.6961170434951782,
+                0.04352772608399391
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_l_wheel_rot"
+                }
+            },
+            "name" : "Empty_l_wheel_rot",
+            "rotation" : [
+                -0.0027656899765133858,
+                0.0022451584227383137,
+                0.0022450394462794065,
+                0.9999911189079285
+            ],
+            "scale" : [
+                1.2787162065505981,
+                1.2787163257598877,
+                1.2787164449691772
+            ],
+            "translation" : [
+                0.9651932716369629,
+                -0.017213821411132812,
+                0.0072705745697021484
+            ]
+        },
+        {
+            "children" : [
+                19,
+                20
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.001"
+                }
+            },
+            "name" : "Bone_LG_F_01.001",
+            "rotation" : [
+                0.0027656895108520985,
+                -0.0022451584227383137,
+                -0.00224503967911005,
+                0.9999911189079285
+            ],
+            "scale" : [
+                0.9999999403953552,
+                1,
+                1
+            ],
+            "translation" : [
+                6.155836582183838,
+                -1.4816914796829224,
+                -26.205307006835938
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_03.001"
+                }
+            },
+            "name" : "Bone_LG_F_03.001",
+            "rotation" : [
+                -0.6421588659286499,
+                0.020404711365699768,
+                -0.009284538216888905,
+                0.7662437558174133
+            ],
+            "scale" : [
+                1.0000001192092896,
+                1,
+                1
+            ],
+            "translation" : [
+                2.3607668708791607e-07,
+                0.8329362869262695,
+                6.528107121539506e-08
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.004"
+                }
+            },
+            "name" : "Bone_LG_F_01.004",
+            "rotation" : [
+                0.7705214023590088,
+                0.0018403618596494198,
+                0.0013869947288185358,
+                0.6374099850654602
+            ],
+            "scale" : [
+                0.9999998211860657,
+                1,
+                1
+            ],
+            "translation" : [
+                0.0026045823469758034,
+                1.1545010805130005,
+                -0.15235379338264465
+            ]
+        },
+        {
+            "children" : [
+                22,
+                23
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_02.001"
+                }
+            },
+            "name" : "Bone_LG_F_02.001",
+            "rotation" : [
+                -0.9372805953025818,
+                -0.002662105718627572,
+                0.004244225565344095,
+                0.3485400974750519
+            ],
+            "scale" : [
+                1,
+                1,
+                0.9999999403953552
+            ],
+            "translation" : [
+                6.255188941955566,
+                -0.1273537427186966,
+                -26.485759735107422
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.005"
+                }
+            },
+            "name" : "Bone_LG_F_01.005",
+            "rotation" : [
+                -0.586919903755188,
+                0.018141139298677444,
+                0.01814115419983864,
+                0.8092385530471802
+            ],
+            "scale" : [
+                1,
+                1,
+                1.0000001192092896
+            ],
+            "translation" : [
+                -0.176652729511261,
+                -0.6876350045204163,
+                -0.016649024561047554
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_r_wheel_rot"
+                }
+            },
+            "name" : "Empty_r_wheel_rot",
+            "rotation" : [
+                2.9802309953197437e-08,
+                1.536091431830755e-08,
+                -1.038483574689053e-07,
+                1
+            ],
+            "scale" : [
+                1.3747305870056152,
+                1.3747307062149048,
+                1.3747307062149048
+            ],
+            "translation" : [
+                -0.8609604835510254,
+                -0.02144895220793952,
+                -0.001194000244140625
+            ]
+        },
+        {
+            "children" : [
+                25,
+                26
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.002"
+                }
+            },
+            "name" : "Bone_LG_F_01.002",
+            "rotation" : [
+                -2.9802309953197437e-08,
+                -1.536091787102123e-08,
+                1.0384835036347795e-07,
+                1
+            ],
+            "scale" : [
+                1,
+                0.9999998807907104,
+                0.9999998807907104
+            ],
+            "translation" : [
+                -6.259943008422852,
+                -1.4838215112686157,
+                -26.192596435546875
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_01.006"
+                }
+            },
+            "name" : "Bone_LG_F_01.006",
+            "rotation" : [
+                0.7792708277702332,
+                -0.010633915662765503,
+                0.010977675206959248,
+                0.6265010237693787
+            ],
+            "scale" : [
+                0.9999999403953552,
+                0.9999999403953552,
+                0.9999997019767761
+            ],
+            "translation" : [
+                0.004911109805107117,
+                1.1803107261657715,
+                -0.06975328922271729
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_03.002"
+                }
+            },
+            "name" : "Bone_LG_F_03.002",
+            "rotation" : [
+                -0.6395584940910339,
+                -0.07864604145288467,
+                0.04041207581758499,
+                0.7636404037475586
+            ],
+            "scale" : [
+                0.9999998807907104,
+                0.9999998807907104,
+                0.9999998211860657
+            ],
+            "translation" : [
+                3.068570038067264e-07,
+                0.8688265085220337,
+                -1.247753061761614e-06
+            ]
+        },
+        {
+            "children" : [
+                28,
+                29
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Bone_LG_F_02.002"
+                }
+            },
+            "name" : "Bone_LG_F_02.002",
+            "rotation" : [
+                -0.937708854675293,
+                0.00701099680736661,
+                -0.017550162971019745,
+                0.34690770506858826
+            ],
+            "scale" : [
+                0.9999999403953552,
+                0.9999998211860657,
+                1.0000001192092896
+            ],
+            "translation" : [
+                -6.260468006134033,
+                -0.09828685224056244,
+                -26.464515686035156
+            ]
+        },
+        {
+            "children" : [
+                16,
+                18,
+                21,
+                24,
+                27,
+                30
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Armature_LandingGear"
+                }
+            },
+            "name" : "Armature_LandingGear",
+            "scale" : [
+                0.18125851452350616,
+                0.18125851452350616,
+                0.18125851452350616
+            ],
+            "translation" : [
+                0,
+                -0.40795379877090454,
+                5.466823101043701
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim.001"
+                }
+            },
+            "name" : "BoneRudder_Trim.001",
+            "rotation" : [
+                0.6141080856323242,
+                0.28072652220726013,
+                0.34964340925216675,
+                0.649471640586853
+            ],
+            "scale" : [
+                1,
+                0.9999998807907104,
+                0.9999998807907104
+            ],
+            "translation" : [
+                0.2681449055671692,
+                -0.025274483487010002,
+                0.05765863507986069
+            ]
+        },
+        {
+            "children" : [
+                32
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim"
+                }
+            },
+            "name" : "BoneRudder_Trim",
+            "rotation" : [
+                0.10798034071922302,
+                3.1487239482430596e-08,
+                4.932165609261574e-08,
+                0.9941530227661133
+            ],
+            "translation" : [
+                1.1213129482712247e-06,
+                -4.104658603668213,
+                -3.5610265731811523
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim.002"
+                }
+            },
+            "name" : "BoneRudder_Trim.002",
+            "rotation" : [
+                -0.6258821487426758,
+                -0.029759954661130905,
+                -0.04660286381840706,
+                0.7779550552368164
+            ],
+            "scale" : [
+                0.9999998807907104,
+                0.9999999403953552,
+                0.9999999403953552
+            ],
+            "translation" : [
+                0.15880541503429413,
+                -4.3535075187683105,
+                -2.540966510772705
+            ]
+        },
+        {
+            "children" : [
+                33,
+                34
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder"
+                }
+            },
+            "name" : "BoneRudder",
+            "rotation" : [
+                -0.21538487076759338,
+                5.014607132314275e-11,
+                5.0146064384248845e-11,
+                0.9765292406082153
+            ],
+            "scale" : [
+                1,
+                0.9999999403953552,
+                0.9999999403953552
+            ],
+            "translation" : [
+                -1.818541193188139e-07,
+                2.508025884628296,
+                2.123438835144043
+            ]
+        },
+        {
+            "children" : [
+                35
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Armature_RudderTrim"
+                }
+            },
+            "name" : "Armature_RudderTrim",
+            "scale" : [
+                0.21555858850479126,
+                0.21555858850479126,
+                0.21555858850479126
+            ],
+            "translation" : [
+                0,
+                1.607980728149414,
+                -5.369338035583496
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_EMG_EXIT"
+                }
+            },
+            "name" : "Empty_EMG_EXIT"
+        },
+        {
+            "children" : [
+                37
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_EMG_EXIT.001"
+                }
+            },
+            "name" : "Empty_EMG_EXIT.001",
+            "rotation" : [
+                0,
+                -0.0532074011862278,
+                0,
+                0.9985834956169128
+            ],
+            "translation" : [
+                -0.685478150844574,
+                1.1870391368865967,
+                -0.8958374261856079
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_TrimPiston"
+                }
+            },
+            "name" : "Empty_Rudder_TrimPiston",
+            "rotation" : [
+                0.11060164123773575,
+                0,
+                0,
+                0.9938648343086243
+            ],
+            "scale" : [
+                8.7692289352417,
+                8.769229888916016,
+                8.769229888916016
+            ],
+            "translation" : [
+                0.5068716406822205,
+                -5.309929847717285,
+                0.12335586547851562
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_FSS.009"
+                }
+            },
+            "mesh" : 2,
+            "name" : "LIVERY_FSS.009",
+            "translation" : [
+                0,
+                0.06819646060466766,
+                0.07739734649658203
+            ]
+        },
+        {
+            "children" : [
+                40
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_FSS.014"
+                }
+            },
+            "mesh" : 3,
+            "name" : "LIVERY_FSS.014",
+            "rotation" : [
+                0.11060163378715515,
+                0,
+                0,
+                0.9938648343086243
+            ],
+            "scale" : [
+                8.7692289352417,
+                8.769229888916016,
+                8.769229888916016
+            ],
+            "translation" : [
+                0,
+                4.594999313354492,
+                -0.24271011352539062
+            ]
+        },
+        {
+            "children" : [
+                39,
+                41
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Trim"
+                }
+            },
+            "name" : "Empty_Rudder_Trim",
+            "scale" : [
+                0.16706061363220215,
+                0.16706059873104095,
+                0.16706059873104095
+            ]
+        },
+        {
+            "children" : [
+                42
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Trim_Dir"
+                }
+            },
+            "name" : "Empty_Rudder_Trim_Dir",
+            "rotation" : [
+                0.09237058460712433,
+                0,
+                0,
+                0.9957247376441956
+            ],
+            "scale" : [
+                2.858394145965576,
+                2.858394145965576,
+                2.858394145965576
+            ],
+            "translation" : [
+                0,
+                -1.3211040496826172,
+                -2.6558990478515625
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_FSS.015"
+                }
+            },
+            "mesh" : 4,
+            "name" : "LIVERY_FSS.015",
+            "rotation" : [
+                0.20193266868591309,
+                0,
+                0,
+                0.9793994426727295
+            ],
+            "scale" : [
+                4.187526702880859,
+                4.187526702880859,
+                4.187526702880859
+            ],
+            "translation" : [
+                0,
+                -3.814697265625e-06,
+                -7.62939453125e-06
+            ]
+        },
+        {
+            "children" : [
+                43,
+                44
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder"
+                }
+            },
+            "name" : "Empty_Rudder",
+            "scale" : [
+                2.4395744800567627,
+                2.4395742416381836,
+                2.4395742416381836
+            ],
+            "translation" : [
+                0,
+                -3.814697265625e-06,
+                0
+            ]
+        },
+        {
+            "children" : [
+                45
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Dir"
+                }
+            },
+            "name" : "Empty_Rudder_Dir",
+            "rotation" : [
+                -0.20193269848823547,
+                0,
+                0,
+                0.9793995022773743
+            ],
+            "scale" : [
+                0.09788775444030762,
+                0.09788775444030762,
+                0.09788775444030762
+            ],
+            "translation" : [
+                0,
+                2.1486072540283203,
+                -4.911612033843994
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Front_Baggage_Handle.001"
+                }
+            },
+            "name" : "Empty_Front_Baggage_Handle.001"
+        },
+        {
+            "children" : [
+                47
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Front_baggage_DIR.001"
+                }
+            },
+            "name" : "Empty_Front_baggage_DIR.001",
+            "rotation" : [
+                -0.12558576464653015,
+                -0.01106221228837967,
+                -0.15019509196281433,
+                0.9805852174758911
+            ],
+            "translation" : [
+                0.08095347881317139,
+                -0.5397977828979492,
+                0.20126819610595703
+            ]
+        },
+        {
+            "children" : [
+                48
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Front_Baggage_02"
+                }
+            },
+            "name" : "Empty_Front_Baggage_02"
+        },
+        {
+            "children" : [
+                49
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_FB_DIR"
+                }
+            },
+            "name" : "Empty_FB_DIR",
+            "rotation" : [
+                0.1251620203256607,
+                -0.1269073337316513,
+                0.016144651919603348,
+                0.983853816986084
+            ],
+            "translation" : [
+                0.5014516711235046,
+                0.6602897047996521,
+                4.770514488220215
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "alphaMode" : "BLEND",
+            "extensions" : {
+                "ASOBO_material_blend_gbuffer" : {
+                    "enabled" : true,
+                    "baseColorBlendFactor" : 1,
+                    "metallicBlendFactor" : 0,
+                    "roughnessBlendFactor" : 0,
+                    "normalBlendFactor" : 0,
+                    "emissiveBlendFactor" : 0,
+                    "occlusionBlendFactor" : 0
+                },
+                "ASOBO_material_shadow_options" : {
+                    "noCastShadow" : true
+                }
+            },
+            "name" : "TECNAM12_LIVERY_FSS",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.20000000298023224
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Circle.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Circle.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Cube.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 8,
+                        "NORMAL" : 9,
+                        "TEXCOORD_0" : 10
+                    },
+                    "indices" : 11,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Cube.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 12,
+                        "NORMAL" : 13,
+                        "TEXCOORD_0" : 14
+                    },
+                    "indices" : 15,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Cube.002",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 16,
+                        "NORMAL" : 17,
+                        "TEXCOORD_0" : 18
+                    },
+                    "indices" : 19,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "TECNAM12_DECAL_FSS",
+            "uri" : "TECNAM12_DECAL_FSS.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 2855,
+            "max" : [
+                0.2033289670944214,
+                0.20328857004642487,
+                0.4053325653076172
+            ],
+            "min" : [
+                -0.2033299207687378,
+                -0.2033701092004776,
+                -0.1678294837474823
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2855,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 2855,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 14574,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 2855,
+            "max" : [
+                0.20333349704742432,
+                0.20328857004642487,
+                0.4053325653076172
+            ],
+            "min" : [
+                -0.20332491397857666,
+                -0.2033701092004776,
+                -0.1678294837474823
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 2855,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 2855,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 14574,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 784,
+            "max" : [
+                0.0663379356265068,
+                0.014172730967402458,
+                0.06425764411687851
+            ],
+            "min" : [
+                -0.06633791327476501,
+                -0.016503484919667244,
+                -0.05427699536085129
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 784,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 10,
+            "componentType" : 5126,
+            "count" : 784,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 11,
+            "componentType" : 5123,
+            "count" : 3120,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 12,
+            "componentType" : 5126,
+            "count" : 385,
+            "max" : [
+                0.06198621541261673,
+                0.08228129148483276,
+                0.07407505065202713
+            ],
+            "min" : [
+                -0.061986248940229416,
+                -0.08228111267089844,
+                -0.0538177490234375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 13,
+            "componentType" : 5126,
+            "count" : 385,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 14,
+            "componentType" : 5126,
+            "count" : 385,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 15,
+            "componentType" : 5123,
+            "count" : 1560,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 16,
+            "componentType" : 5126,
+            "count" : 1839,
+            "max" : [
+                0.0944024920463562,
+                1.2834523916244507,
+                0.5041313767433167
+            ],
+            "min" : [
+                -0.0944024920463562,
+                -1.1353979110717773,
+                -1.012725591659546
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 17,
+            "componentType" : 5126,
+            "count" : 1839,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 18,
+            "componentType" : 5126,
+            "count" : 1839,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 19,
+            "componentType" : 5123,
+            "count" : 7299,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 34260,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34260,
+            "byteOffset" : 34260
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22840,
+            "byteOffset" : 68520
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 29148,
+            "byteOffset" : 91360
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34260,
+            "byteOffset" : 120508
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34260,
+            "byteOffset" : 154768
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22840,
+            "byteOffset" : 189028
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 29148,
+            "byteOffset" : 211868
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9408,
+            "byteOffset" : 241016
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9408,
+            "byteOffset" : 250424
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6272,
+            "byteOffset" : 259832
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6240,
+            "byteOffset" : 266104
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4620,
+            "byteOffset" : 272344
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4620,
+            "byteOffset" : 276964
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3080,
+            "byteOffset" : 281584
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3120,
+            "byteOffset" : 284664
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22068,
+            "byteOffset" : 287784
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22068,
+            "byteOffset" : 309852
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 14712,
+            "byteOffset" : 331920
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 14598,
+            "byteOffset" : 346632
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 361232,
+            "uri" : "TECNAM2012_LIVERY_FSS_INT.bin"
+        }
+    ]
+}

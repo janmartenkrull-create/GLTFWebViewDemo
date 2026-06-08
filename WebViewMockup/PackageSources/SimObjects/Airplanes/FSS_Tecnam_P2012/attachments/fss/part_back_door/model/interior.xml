@@ -1,0 +1,34 @@
+<ModelInfo>
+    <LODS>
+        <LOD minSize="10" ModelFile="FSS_Tecnam_P2012_Base_Back_Door_INT_LOD00.gltf" />
+        <LOD minSize="8" ModelFile="FSS_Tecnam_P2012_Base_Back_Door_INT_LOD01.gltf" />
+        <LOD minSize="5" ModelFile="FSS_Tecnam_P2012_Base_Back_Door_INT_LOD02.gltf" />
+    </LODS>
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\Templates.xml" />
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\InputEvents.xml" />
+
+        <Component ID="DOORS">
+            <UseTemplate Name="FSS_DOOR">
+                <NODE_ID>Door_Handle_Back</NODE_ID>
+                <ENGINE_INDEX>1</ENGINE_INDEX>
+                <DOOR_INDEX>2</DOOR_INDEX>
+                <ID>BACK</ID>
+                <HANDLE_ANIM_NAME>Door_Handle_Back</HANDLE_ANIM_NAME>
+                <DOOR_ANIM_NAME>Back_Door</DOOR_ANIM_NAME>
+                <DOOR_UNLOCKED_EXTRA_CODE>(L:FSS_P2012_SKYDIVE_DOOR) ||</DOOR_UNLOCKED_EXTRA_CODE>
+            </UseTemplate>
+
+            <UseTemplate Name="FSS_DOOR">
+                <NODE_ID>CABIN_CARGO_DOOR_CLICKSPOT</NODE_ID>
+                <ENGINE_INDEX>1</ENGINE_INDEX>
+                <DOOR_INDEX>4</DOOR_INDEX>
+                <ID>Cargo</ID>
+                <DOOR_ANIM_NAME>Cargo_Door</DOOR_ANIM_NAME>
+                <HIGHLIGHT_NODE_ID>BASE_Plane.025</HIGHLIGHT_NODE_ID>
+                <SET_CONDITION>(A:INTERACTIVE POINT OPEN:2, Number) 1 ==</SET_CONDITION>
+            </UseTemplate>
+        </Component>
+    </Behaviors>
+</ModelInfo>

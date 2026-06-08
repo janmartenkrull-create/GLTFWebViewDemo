@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo>
+    <LODS>
+        <LOD minSize="50" ModelFile="Chair_Medevac_Single.gltf" />
+        <LOD minSize="40" ModelFile="Chair_Medevac_Single.gltf" />
+        <LOD minSize="30" ModelFile="Chair_Medevac_Single.gltf" />
+        <LOD minSize="20" ModelFile="Chair_Medevac_Single.gltf" />
+    </LODS>
+
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+
+        <Component ID="MED_fig0043_Mesh_Apply" Node="MED_fig0043_Mesh_Apply">
+            <UseTemplate Name="ASOBO_GT_Visibility_Code">
+                <VISIBILITY_CODE>0</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+
+        <Component ID="MED_MedBlanket" Node="MED_MedBlanket">
+            <UseTemplate Name="ASOBO_GT_Visibility_Code">
+                <VISIBILITY_CODE>0</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+
+        <Component ID="MED_Cube_1" Node="MED_Cube.001">
+            <UseTemplate Name="ASOBO_GT_Visibility_Code">
+                <VISIBILITY_CODE>0</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+
+        <Component ID="MED_Cube_2" Node="MED_Cube.002">
+            <UseTemplate Name="ASOBO_GT_Visibility_Code">
+                <VISIBILITY_CODE>0</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+    </Behaviors>
+</ModelInfo>

@@ -1,0 +1,39 @@
+<ModelInfo>
+    <LODS>
+        <LOD minSize="4" ModelFile="Base_back_door.gltf" />
+        <LOD minSize="3" ModelFile="Base_back_door.gltf" />
+        <LOD minSize="2" ModelFile="Base_back_door.gltf" />
+        <LOD minSize="1" ModelFile="Base_back_door.gltf" />
+    </LODS>
+
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="Asobo\Exterior.xml" />
+        <Include ModelBehaviorFile="Asobo_EX1\DefaultConfig.xml"/>
+		<Include ModelBehaviorFile="Asobo_EX1\Index.xml"/>
+        <Include ModelBehaviorFile="FSS_Tecnam_P2012\DoorsExt.xml" />
+
+        <Component ID="DOORS">
+            <Parameters Type="Default">
+                <UseParametersFn Name="ASOBO_Configure_Global_Parameters" />
+            </Parameters>
+            <UseTemplate Name="FSS_DOORS_EXT_DOOR">
+                <DOOR_INDEX>2</DOOR_INDEX>
+                <IN_BASE_NAME>EXT_BACK_DOOR_HANDLE</IN_BASE_NAME>
+                <NAME>BACK_DOOR</NAME>
+                <HANDLE_ANIM_NAME>EXT_BACK_DOOR_HANDLE</HANDLE_ANIM_NAME>
+                <DOOR_ANIM_NAME>Back_Door</DOOR_ANIM_NAME>
+                <TOOLTIP_ID>DOOR</TOOLTIP_ID>
+            </UseTemplate>
+
+            <UseTemplate Name="FSS_DOORS_EXT_DOOR">
+                <DOOR_INDEX>4</DOOR_INDEX>
+                <IN_BASE_NAME>EXT_CARGO_DOOR_CLICKSPOT</IN_BASE_NAME>
+                <NAME>CARGO_DOOR</NAME>
+                <DOOR_ANIM_NAME>Cargo_Door</DOOR_ANIM_NAME>
+                <TOOLTIP_ID>COMMON_BAGGAGE_DOOR</TOOLTIP_ID>
+                <SET_CONDITION>(A:INTERACTIVE POINT OPEN:2, Number) 1 ==</SET_CONDITION>
+            </UseTemplate>
+        </Component>
+    </Behaviors>
+</ModelInfo>

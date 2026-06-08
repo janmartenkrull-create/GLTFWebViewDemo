@@ -1,0 +1,26 @@
+<ModelInfo>
+    <LODS>
+        <LOD minSize="50" ModelFile="Tecnam2012_Front_Baggage_LOD00.gltf" />
+        <LOD minSize="40" ModelFile="Tecnam2012_Front_Baggage_LOD01.gltf" />
+        <LOD minSize="20" ModelFile="Tecnam2012_Front_Baggage_LOD01.gltf" />
+        <LOD minSize="10" ModelFile="Tecnam2012_Front_Baggage_LOD02.gltf" />
+    </LODS>
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include ModelBehaviorFile="Asobo\Exterior.xml" />
+
+        <Component ID="DOORS">
+            <UseTemplate Name="ASOBO_DOOR_InteractivePoint_Template">
+                <ID>3</ID>
+                <ANIM_NAME>FRONT_BAGGAGE</ANIM_NAME>
+            </UseTemplate>
+
+            <!-- Hide handle since we only use exterior in FS24 -->
+            <Component ID="Front_baggage_handle" Node="Front_baggage_handle">
+                <UseTemplate Name="ASOBO_GT_Visibility_Code">
+                    <VISIBILITY_CODE>0</VISIBILITY_CODE>
+                </UseTemplate>
+            </Component>
+        </Component>
+    </Behaviors>
+</ModelInfo>

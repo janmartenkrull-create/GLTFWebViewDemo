@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Web Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --tecnam-dark: #0f0f0f;
+      --tecnam-red: #e30613;
+      --tecnam-gray: #6b7280;
+      --tecnam-light: #f4f4f5;
+      --tecnam-border: #e4e4e7;
+    }
+    body {
+      min-height: 100vh;
+      background: #fff;
+      color: var(--tecnam-dark);
+      font-family: 'Montserrat', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+    .hero {
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--tecnam-border);
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tecnam-red);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .hero p {
+      max-width: 680px;
+      color: var(--tecnam-gray);
+      font-size: 0.98rem;
+    }
+    .panel {
+      background: var(--tecnam-light);
+      border: 1px solid var(--tecnam-border);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .panel-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tecnam-gray);
+      margin-bottom: 18px;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px 20px;
+      align-items: end;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tecnam-gray);
+    }
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--tecnam-border);
+      background: #fff;
+      color: var(--tecnam-dark);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .view-toggle { display: flex; flex-direction: column; gap: 8px; }
+    .view-toggle-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tecnam-gray);
+    }
+    .view-toggle-row { display: flex; gap: 8px; }
+    .view-toggle button {
+      flex: 1;
+      padding: 11px 12px;
+      border: 1px solid var(--tecnam-border);
+      background: #fff;
+      color: var(--tecnam-dark);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .view-toggle button:hover { border-color: var(--tecnam-dark); }
+    .view-toggle button.active {
+      background: var(--tecnam-dark);
+      border-color: var(--tecnam-dark);
+      color: #fff;
+    }
+    .notice {
+      grid-column: 1 / -1;
+      font-size: 0.84rem;
+      color: #7a4b00;
+      background: #fff8eb;
+      border-left: 3px solid #f5a623;
+      padding: 12px 14px;
+    }
+    .loading-ui[hidden] { display: none !important; }
+    .loading-ui { grid-column: 1 / -1; }
+    .progress-wrap { margin-top: 12px; }
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: var(--tecnam-border);
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--tecnam-red);
+      transition: width 0.15s ease;
+    }
+    .progress-text {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--tecnam-gray);
+    }
+    .progress-text.error { color: var(--tecnam-red); }
+    .viewer-section { margin-top: 8px; }
+    .viewer-header h2 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tecnam-gray);
+      margin-bottom: 12px;
+    }
+    .viewer-shell { background: var(--tecnam-dark); overflow: hidden; }
+    .viewer-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 420px;
+      background: #111;
+    }
+    #canvas { display: block; width: 100%; height: 100%; }
+    .viewer-hint {
+      padding: 14px 18px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      background: #0a0a0a;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .site-footer {
+      max-width: 1200px;
+      margin: 32px auto 0;
+      padding: 24px 24px 0;
+      border-top: 1px solid var(--tecnam-border);
+      font-size: 0.75rem;
+      color: var(--tecnam-gray);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="hero-eyebrow">FSS Tecnam P2012</p>
+      <h1>3D Web Demo</h1>
+      <p>
+        Explore the aircraft directly from the MSFS package source files in your browser.
+        Switch cabin variants and liveries, view the cockpit from the pilot seat, and interact
+        with the rear door — all rendered with Three.js from the original glTF assets.
+      </p>
+    </section>
+
+    <section class="panel">
+      <p class="panel-title">Configuration</p>
+      <div class="controls">
+        <label>
+          Cabin variant
+          <select id="variantSelect"></select>
+        </label>
+        <label>
+          Livery
+          <select id="liverySelect"></select>
+        </label>
+        <div class="view-toggle">
+          <span class="view-toggle-label">Camera view</span>
+          <div class="view-toggle-row">
+            <button type="button" id="cameraExteriorBtn" class="active">Exterior</button>
+            <button type="button" id="cameraInteriorBtn">Pilot</button>
+          </div>
+        </div>
+        <div class="loading-ui" id="loadingUi" hidden>
+          <p class="notice">
+            Initial loading can take several seconds. Textures are the full-resolution MSFS source
+            assets and were not optimized for web delivery.
+          </p>
+          <div class="progress-wrap">
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText">Loading…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="viewer-section">
+      <div class="viewer-header">
+        <h2>Interactive 3D View</h2>
+      </div>
+      <section class="viewer-shell">
+        <div class="viewer-frame">
+          <canvas id="canvas"></canvas>
+        </div>
+        <p class="viewer-hint">
+          Drag to rotate · Right-click to pan · Scroll to zoom · Double-click to reset camera.
+          Click a red marker on the rear or left cockpit door to open or close it.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    FSS Tecnam P2012 · Demo viewer for MSFS package source assets · Inspired by
+    <a href="https://tecnam.com/" style="color:inherit;font-weight:600;">Tecnam Aircraft</a>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const pathname = location.pathname.replace(/\\/g, '/');
+    const ROOT = pathname.includes('/tools/gltf-viewer/')
+      ? '../../PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012'
+      : 'PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012';
+    const COMMON_TEXTURE = `${ROOT}/common/texture/`;
+
+    const HIDE_MATERIAL_PATTERN = /collision|invisible|occluder|environtment|\$PFD_|\$MFD_|\$DRM_|\$EFB_|\$RegistrationNumber|sunshade|suncover|(?:^FROST$)|(?:^FSS_Tecnam12_Checklist$)|GeoDecalFrosted/i;
+    const HIDE_NODE_PATTERN = /collision|hitbox|drone|clickspot|occluder|hider|sunshade|suncover|_Add$|(?:^DEICE_[1-4]$)|(?:^DEICE_LIGHT$)|FROSTED_|CHECKLIST|\$RegistrationNumber/i;
+    // MSFS names frost-overlay meshes FROSTED_*; for belly/cargo doors they are the visible exterior panels.
+    const EXTERIOR_DOOR_PANEL_PATTERN = /^(?:FROSTED_Cube\.153|FROSTED_Cube\.165|BASE_Cube\.042)$/i;
+    const BELLY_DOOR_CLOSED_ANIMS = ['Front_baggage', 'EXT_Front_baggage_handle', 'Cargo_Door'];
+    const PROP_STILL_PATTERN = /prop_still|Prop_still/i;
+    const HIDE_PASSENGER_PATTERN = /Passenger_Group/i;
+    const HIDE_GROUND_EQUIP_PATTERN = /(?:^EXT_Wheel_Chocks|Wheel_Chock|(?:^EXT_)?Pitor?_cover|(?:^EXT_)?Pitot_cover|radarcam_cover|glass_light_cover_engine|cover engine light)/i;
+    const DOOR_ANIM_SECONDS = 3;
+    const CLICKSPOT_BASE_SCALE = 0.42;
+    const CLICKSPOT_HOVER_SCALE = 0.62;
+    const EXTERIOR_FRAME_PADDING = 1.08;
+    const EXTERIOR_CAMERA_AZIMUTH = new THREE.Vector3(0.9, 0.42, 1.05).normalize();
+    const LIVERY_DECAL_SURFACE_OFFSET = 0.006;
+
+    const LIVERY_DECAL_NAME_PATTERN = /^(?:LIVERY_|regnumber_|TECNAM12_LIVERY)/i;
+
+    function isInLiveryScene(object3D) {
+      let node = object3D;
+      while (node) {
+        if (node.userData?.liveryOnlyScene) return true;
+        node = node.parent;
+      }
+      return false;
+    }
+
+    function shouldSyncLiveryNode(object3D) {
+      if (!isInLiveryScene(object3D) || !object3D.name) return false;
+      if (object3D.isMesh && LIVERY_DECAL_NAME_PATTERN.test(object3D.name)) return false;
+      if (object3D.isMesh && /^regnumber_/i.test(object3D.name)) return false;
+      return true;
+    }
+
+    const DOOR_DEFS = [
+      {
+        id: 'back',
+        anchorNames: ['EXT_BACK_DOOR_HANDLE', 'Door_Handle_Back'],
+        clickPatterns: [/EXT_BACK_DOOR|Door_Handle_Back|RearDoor_|Empty_Back_Door|BASE_Cube\.041/i],
+        clips: [
+          { key: 'door', names: ['Back_Door'] },
+          { key: 'handle', names: ['EXT_BACK_DOOR_HANDLE'] },
+        ],
+      },
+      {
+        id: 'left',
+        anchorNames: ['EXT_LEFT_DOOR_HANDLE'],
+        clickPatterns: [/EXT_LEFT_DOOR_HANDLE|Pivot_FrontDoor\.001|door_left/i],
+        clips: [
+          { key: 'door', names: ['door_left'] },
+          { key: 'handle', names: ['EXT_LEFT_DOOR_HANDLE'] },
+        ],
+      },
+    ];
+
+    // CAMERADEFINITION.0 "Pilot" from common/config/cameras.cfg
+    const PILOT_CAMERA = {
+      xyz: [-0.049196, 0.42, 3.05696],
+      pbh: [-12.10064, -0.004707, -0.821795],
+    };
+
+    const LIVERIES = [
+      { id: 'fss', name: 'FSS', tags: ['livery_type_default'], exterior: 'TECNAM2012_LIVERY_FSS.gltf', interior: 'TECNAM2012_LIVERY_FSS_INT.gltf' },
+      { id: 'flexfly', name: 'FlexFly', tags: ['livery_type_default'], exterior: 'TECNAM2012_LIVERY_FLEXFLY.gltf', interior: 'TECNAM2012_LIVERY_FLEXFLY_INT.gltf' },
+      { id: 'tecnamus', name: 'Tecnam US', tags: ['livery_type_default'], exterior: 'TECNAM2012_LIVERY_TECNAMUS.gltf', interior: 'TECNAM2012_LIVERY_TECNAMUS_INT.gltf' },
+    ];
+
+    const VARIANTS = {
+      passenger: {
+        label: 'Passenger (PAX)',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'Chair_Airline_LOD00.gltf', base: `${ROOT}/attachments/fss/part_airline/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+      cargo: {
+        label: 'Cargo',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'Chair_Cargo.gltf', base: `${ROOT}/attachments/fss/part_cargo/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+      combi: {
+        label: 'Combi',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'Chair_Combi.gltf', base: `${ROOT}/attachments/fss/part_combi/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+      vip: {
+        label: 'VIP',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'VIP_CABIN_LOD00.gltf', base: `${ROOT}/attachments/fss/part_vip/model/` },
+          { file: 'Chair_VIP.gltf', base: `${ROOT}/attachments/fss/part_vip/model/` },
+        ],
+      },
+      smp: {
+        label: 'SMP',
+        liveryTags: ['livery_type_default', 'cabin_type_smp'],
+        models: [
+          { file: 'SMP_Part.gltf', base: `${ROOT}/attachments/fss/part_smp/model/` },
+          { file: 'Chair_SMP.gltf', base: `${ROOT}/attachments/fss/part_smp/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+      skydive: {
+        label: 'Skydive',
+        liveryTags: ['livery_type_default', 'cabin_type_skydive'],
+        models: [
+          { file: 'Skydive_Ext.gltf', base: `${ROOT}/attachments/fss/part_skydive/model/` },
+          { file: 'Chair_Skydive.gltf', base: `${ROOT}/attachments/fss/part_skydive/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+        ],
+      },
+      medevac_single: {
+        label: 'Medevac (single stretcher)',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'Chair_Medevac_Single.gltf', base: `${ROOT}/attachments/fss/part_medevac_single/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+      medevac_double: {
+        label: 'Medevac (dual stretcher)',
+        liveryTags: ['livery_type_default'],
+        models: [
+          { file: 'Chair_Medevac.gltf', base: `${ROOT}/attachments/fss/part_medevac/model/` },
+          { file: 'FSS_Tecnam_P2012_Cabin_LOD00.gltf', base: `${ROOT}/attachments/fss/part_cabin/model/` },
+          { file: 'FSS_Tecnam_P2012_Base_Back_Bag_INT_LOD00.gltf', base: `${ROOT}/attachments/fss/part_back_baggage/model/` },
+        ],
+      },
+    };
+
+    const canvas = document.getElementById('canvas');
+    const variantSelect = document.getElementById('variantSelect');
+    const liverySelect = document.getElementById('liverySelect');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const cameraExteriorBtn = document.getElementById('cameraExteriorBtn');
+    const cameraInteriorBtn = document.getElementById('cameraInteriorBtn');
+    const loadingUi = document.getElementById('loadingUi');
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicDepthBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x1a1d24);
+
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 5000);
+    camera.position.set(8, 4, 10);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.screenSpacePanning = true;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+    keyLight.position.set(12, 20, 10);
+    scene.add(keyLight);
+    const fillLight = new THREE.DirectionalLight(0xc8d8ff, 0.55);
+    fillLight.position.set(-10, 8, -8);
+    scene.add(fillLight);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.35);
+    rimLight.position.set(0, 5, -15);
+    scene.add(rimLight);
+
+    const grid = new THREE.GridHelper(40, 40, 0x3a4050, 0x2a2f3a);
+    scene.add(grid);
+
+    let currentRoot = null;
+    let exteriorCameraState = null;
+    let interiorCameraState = null;
+    let cameraViewMode = 'exterior';
+    let activeLoadId = 0;
+    let lastProgress = 0;
+    const doorStates = Object.fromEntries(DOOR_DEFS.map((def) => [def.id, false]));
+    let doorAnim = null;
+    const doorClickspots = new Map();
+    let hoveredDoorId = null;
+    const animationControllers = [];
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let pointerDown = null;
+
+    function modelEntry(file, base, options = {}) {
+      return { file, base, ...options };
+    }
+
+    function getBaseModels() {
+      return [
+        modelEntry('FSS_Tecnam_P2012_LOD00.gltf', `${ROOT}/common/model/`, { hideBlurredProps: true, textureScope: 'exterior' }),
+        modelEntry('Base_back_door.gltf', `${ROOT}/attachments/fss/part_back_door/model/`, { textureScope: 'exterior' }),
+        modelEntry('FSS_Tecnam_P2012_interior_LOD00.gltf', `${ROOT}/common/model/`, { textureScope: 'interior' }),
+        modelEntry('Tecnam2012_Front_Baggage_LOD00.gltf', `${ROOT}/attachments/fss/part_front_baggage/model/`, { textureScope: 'interior' }),
+        modelEntry('FSS_Tecnam_P2012_Base_Back_Door_INT_LOD00.gltf', `${ROOT}/attachments/fss/part_back_door/model/`, { textureScope: 'interior' }),
+      ];
+    }
+
+    function getLiveryModels(livery) {
+      if (!livery || livery.id === 'blank') return [];
+
+      const models = [];
+      if (livery.exterior) {
+        models.push(modelEntry(livery.exterior, `${ROOT}/liveries/fss/${livery.id}/model.exterior/`, {
+          textureScope: 'exterior',
+          liveryOnly: true,
+        }));
+      }
+
+      const interiorFiles = livery.interior
+        ? (Array.isArray(livery.interior) ? livery.interior : [livery.interior])
+        : [];
+
+      interiorFiles.forEach((file) => {
+        models.push(modelEntry(file, `${ROOT}/liveries/fss/${livery.id}/model.interior/`, {
+          textureScope: 'interior',
+          liveryOnly: true,
+        }));
+      });
+
+      return models;
+    }
+
+    function buildModelList(variantKey, livery) {
+      const variant = VARIANTS[variantKey];
+      return [
+        ...getBaseModels(),
+        ...variant.models.map((m) => ({ ...m, textureScope: m.textureScope || 'interior' })),
+        ...getLiveryModels(livery),
+      ];
+    }
+
+    function liveryMatchesVariant(livery, variantKey) {
+      const variant = VARIANTS[variantKey];
+      return livery.tags.some((tag) => variant.liveryTags.includes(tag));
+    }
+
+    function populateVariantSelect() {
+      Object.entries(VARIANTS).forEach(([key, variant]) => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = variant.label;
+        variantSelect.appendChild(option);
+      });
+    }
+
+    function populateLiverySelect(variantKey, preferredId) {
+      const current = preferredId || liverySelect.value;
+      liverySelect.innerHTML = '';
+
+      LIVERIES.filter((livery) => liveryMatchesVariant(livery, variantKey)).forEach((livery) => {
+        const option = document.createElement('option');
+        option.value = livery.id;
+        option.textContent = livery.name;
+        liverySelect.appendChild(option);
+      });
+
+      const available = LIVERIES.filter((livery) => liveryMatchesVariant(livery, variantKey));
+      const fallback = available.find((livery) => livery.id === current) || available.find((livery) => livery.id === 'fss') || available[0];
+      if (fallback) liverySelect.value = fallback.id;
+    }
+
+    function getSelectedLivery() {
+      return LIVERIES.find((livery) => livery.id === liverySelect.value) || LIVERIES[0];
+    }
+
+    function setLoadingUiVisible(visible) {
+      if (!loadingUi) return;
+      loadingUi.hidden = !visible;
+    }
+
+    function setProgress(ratio, text, isError = false, monotonic = false) {
+      const clamped = Math.max(0, Math.min(1, ratio));
+      const pctBase = monotonic ? Math.max(lastProgress, clamped) : clamped;
+      if (monotonic) lastProgress = pctBase;
+      const pct = Math.round(pctBase * 100);
+      progressBar.style.width = `${pct}%`;
+      progressText.textContent = text;
+      progressText.classList.toggle('error', isError);
+    }
+
+    function getTextureBases(model, livery) {
+      const bases = [COMMON_TEXTURE];
+      if (!livery || livery.id === 'blank') return bases;
+
+      if (model.textureScope === 'exterior') {
+        bases.unshift(`${ROOT}/liveries/fss/${livery.id}/texture.exterior/`);
+      } else if (model.textureScope === 'interior') {
+        bases.unshift(`${ROOT}/liveries/fss/${livery.id}/texture.interior/`);
+      } else {
+        bases.unshift(`${ROOT}/liveries/fss/${livery.id}/texture.exterior/`);
+        bases.unshift(`${ROOT}/liveries/fss/${livery.id}/texture.interior/`);
+      }
+      return [...new Set(bases)];
+    }
+
+    function createLoader(model, livery, manager) {
+      const loader = new GLTFLoader(manager);
+      loader.setPath(model.base);
+
+      const textureBases = model.liveryOnly
+        ? getTextureBases(model, livery)
+        : [COMMON_TEXTURE];
+
+      loader.manager.setURLModifier((url) => {
+        const fileName = url.split('/').pop().split('?')[0];
+        if (/\.(png|jpg|jpeg|webp|ktx2)$/i.test(fileName)) {
+          return textureBases[0] + fileName;
+        }
+        return url;
+      });
+
+      return loader;
+    }
+
+    function resize() {
+      const frame = canvas.parentElement;
+      const w = frame.clientWidth;
+      const h = frame.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+
+    function disposeObject(object3D) {
+      object3D.traverse((obj) => {
+        if (!obj.isMesh) return;
+        obj.geometry?.dispose();
+        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+        mats.forEach((mat) => {
+          mat?.map?.dispose();
+          mat?.normalMap?.dispose();
+          mat?.metalnessMap?.dispose();
+          mat?.roughnessMap?.dispose();
+          mat?.aoMap?.dispose();
+          mat?.emissiveMap?.dispose();
+          mat?.dispose();
+        });
+      });
+    }
+
+    function clearModel() {
+      animationControllers.forEach(({ mixer }) => mixer.stopAllAction());
+      animationControllers.length = 0;
+      DOOR_DEFS.forEach((def) => { doorStates[def.id] = false; });
+      doorAnim = null;
+      removeDoorClickspots();
+
+      if (!currentRoot) return;
+      scene.remove(currentRoot);
+      disposeObject(currentRoot);
+      currentRoot = null;
+    }
+
+    function isExteriorDoorPanel(object3D) {
+      return EXTERIOR_DOOR_PANEL_PATTERN.test(object3D?.name || '');
+    }
+
+    function getClosedDoorAnimTime(clip) {
+      if (clip.name === 'Front_baggage' || clip.name === 'EXT_Front_baggage_handle') return 0;
+      if (clip.name === 'Cargo_Door') {
+        let minTime = Infinity;
+        clip.tracks.forEach((track) => {
+          if (track.times?.length) minTime = Math.min(minTime, track.times[0]);
+        });
+        return Number.isFinite(minTime) ? minTime : 0;
+      }
+      return null;
+    }
+
+    function hideSimOnlyObjects(object3D) {
+      object3D.traverse((obj) => {
+        const nodeName = obj.name || '';
+        const keepDoorPanel = isExteriorDoorPanel(obj);
+        if (HIDE_NODE_PATTERN.test(nodeName) && !keepDoorPanel) obj.visible = false;
+
+        if (!obj.isMesh) return;
+        const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.forEach((mat) => {
+          if (!mat) return;
+          const matName = mat.name || '';
+          if (HIDE_MATERIAL_PATTERN.test(matName) && !keepDoorPanel) obj.visible = false;
+          if (/clickspot/i.test(matName)) obj.visible = false;
+        });
+      });
+    }
+
+    function isStillPropNode(nodeName) {
+      return PROP_STILL_PATTERN.test(nodeName)
+        || /Prop_Cone_(Left|Right)/i.test(nodeName)
+        || /prop_still|Prop_still/i.test(nodeName)
+        || /Empty_Prop_still/i.test(nodeName)
+        || /^Empty_Prop_(Left|Right)$/i.test(nodeName)
+        || /^blade[12]_[LR]$/i.test(nodeName);
+    }
+
+    function shouldHidePropNode(nodeName, isMesh) {
+      if (isStillPropNode(nodeName)) return false;
+      if (/prop_blurred|prop_slow|prop_side|Prop_Blur|Prop_Side|^Prop_cone$|^FROSTED_blade|^FROSTED_prop_(?!still)/i.test(nodeName)) {
+        return true;
+      }
+      return isMesh && /prop|Prop/i.test(nodeName);
+    }
+
+    function hideNonStillProps(object3D) {
+      object3D.traverse((obj) => {
+        const nodeName = obj.name || '';
+        if (shouldHidePropNode(nodeName, obj.isMesh)) obj.visible = false;
+
+        if (!obj.isMesh) return;
+        const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.forEach((mat) => {
+          if (!mat) return;
+          const matName = mat.name || '';
+          if (/^FROST$|Prop_Blur|Prop_Side/i.test(matName)) obj.visible = false;
+        });
+      });
+    }
+
+    function hidePassengersAndGroundEquipment(object3D) {
+      object3D.traverse((obj) => {
+        const nodeName = obj.name || '';
+        if (HIDE_PASSENGER_PATTERN.test(nodeName)) obj.visible = false;
+        if (HIDE_GROUND_EQUIP_PATTERN.test(nodeName)) obj.visible = false;
+
+        if (!obj.isMesh) return;
+        const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.forEach((mat) => {
+          if (!mat) return;
+          if (/Passenger_Group/i.test(mat.name || '')) obj.visible = false;
+        });
+      });
+    }
+
+    function markDoorClickTargets(object3D) {
+      object3D.traverse((obj) => {
+        if (!obj.isMesh || !obj.visible) return;
+        const nodeName = obj.name || '';
+        DOOR_DEFS.forEach((def) => {
+          if (def.clickPatterns.some((pattern) => pattern.test(nodeName))) {
+            obj.userData.doorClickId = def.id;
+          }
+        });
+      });
+    }
+
+    function setupModelAnimations(gltf) {
+      if (!gltf.animations?.length) return;
+
+      const mixer = new THREE.AnimationMixer(gltf.scene);
+      const controller = { mixer, doors: {} };
+
+      gltf.animations.forEach((clip) => {
+        const action = mixer.clipAction(clip);
+        action.play();
+        action.paused = true;
+        action.clampWhenFinished = true;
+        action.setLoop(THREE.LoopOnce, 1);
+        const closedTime = getClosedDoorAnimTime(clip);
+        action.time = closedTime ?? 0;
+
+        DOOR_DEFS.forEach((def) => {
+          def.clips.forEach((clipDef) => {
+            if (!clipDef.names.includes(clip.name)) return;
+            if (!controller.doors[def.id]) controller.doors[def.id] = {};
+            controller.doors[def.id][clipDef.key] = action;
+          });
+        });
+      });
+
+      mixer.update(0);
+      if (Object.keys(controller.doors).length || gltf.animations.some((clip) => BELLY_DOOR_CLOSED_ANIMS.includes(clip.name))) {
+        animationControllers.push(controller);
+      }
+    }
+
+    function getDoorOpenRatio(doorId) {
+      for (const { doors } of animationControllers) {
+        const doorActions = doors[doorId];
+        if (!doorActions) continue;
+        if (doorActions.door) {
+          const duration = doorActions.door.getClip().duration;
+          if (duration > 0) return doorActions.door.time / duration;
+        }
+        if (doorActions.handle) {
+          const duration = doorActions.handle.getClip().duration;
+          if (duration > 0) return doorActions.handle.time / duration;
+        }
+      }
+      return doorStates[doorId] ? 1 : 0;
+    }
+
+    function applyDoorOpenRatio(doorId, ratio) {
+      const clamped = THREE.MathUtils.clamp(ratio, 0, 1);
+      animationControllers.forEach(({ mixer, doors }) => {
+        const doorActions = doors[doorId];
+        if (!doorActions) return;
+        ['door', 'handle'].forEach((key) => {
+          const action = doorActions[key];
+          if (!action) return;
+          action.paused = true;
+          action.time = clamped * action.getClip().duration;
+        });
+        mixer.update(0);
+      });
+      syncLiveryTransforms(currentRoot);
+    }
+
+    function syncWorldTransform(source, target) {
+      source.updateWorldMatrix(true, false);
+      const worldMatrix = source.matrixWorld.clone();
+      if (target.parent) {
+        target.parent.updateWorldMatrix(true, false);
+        worldMatrix.premultiply(new THREE.Matrix4().copy(target.parent.matrixWorld).invert());
+      }
+      worldMatrix.decompose(target.position, target.quaternion, target.scale);
+      target.updateWorldMatrix(true, false);
+    }
+
+    function scoreLiverySourceNode(obj) {
+      let score = obj.children?.length || 0;
+      obj.traverse((child) => {
+        if (child.isMesh) score += 1;
+      });
+      return score;
+    }
+
+    function buildLiverySourceMap(root) {
+      const map = new Map();
+      if (!root) return map;
+
+      root.traverse((obj) => {
+        if (!obj.name || isInLiveryScene(obj)) return;
+        const score = scoreLiverySourceNode(obj);
+        const current = map.get(obj.name);
+        if (!current || score > current.score) {
+          map.set(obj.name, { node: obj, score });
+        }
+      });
+
+      return map;
+    }
+
+    function syncLiveryTransforms(root) {
+      if (!root) return;
+      const sources = buildLiverySourceMap(root);
+      if (!sources.size) return;
+
+      root.traverse((obj) => {
+        if (!shouldSyncLiveryNode(obj)) return;
+
+        const entry = sources.get(obj.name);
+        if (!entry) return;
+
+        const source = entry.node;
+        if (source === obj) return;
+        syncWorldTransform(source, obj);
+      });
+    }
+
+    function syncLiveryDoorTransforms(root) {
+      syncLiveryTransforms(root);
+    }
+
+    function startDoorAnimation(doorId, open) {
+      doorAnim = {
+        doorId,
+        fromRatio: getDoorOpenRatio(doorId),
+        toRatio: open ? 1 : 0,
+        elapsed: 0,
+        targetOpen: open,
+      };
+    }
+
+    function updateDoorAnimation(delta) {
+      if (!doorAnim) return;
+
+      doorAnim.elapsed += delta;
+      const t = Math.min(1, doorAnim.elapsed / DOOR_ANIM_SECONDS);
+      applyDoorOpenRatio(
+        doorAnim.doorId,
+        THREE.MathUtils.lerp(doorAnim.fromRatio, doorAnim.toRatio, t)
+      );
+
+      if (t >= 1) {
+        doorStates[doorAnim.doorId] = doorAnim.targetOpen;
+        doorAnim = null;
+      }
+    }
+
+    function toggleDoor(doorId) {
+      if (doorAnim) return;
+      startDoorAnimation(doorId, !doorStates[doorId]);
+    }
+
+    function findDoorAnchor(root, def) {
+      for (const name of def.anchorNames) {
+        const node = findNodeByName(root, name);
+        if (node) return node;
+      }
+      return null;
+    }
+
+    function buildClickspotMesh(doorId) {
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(0.14, 0.2, 48),
+        new THREE.MeshBasicMaterial({
+          color: 0xe30613,
+          transparent: true,
+          opacity: 0.9,
+          depthTest: false,
+          side: THREE.DoubleSide,
+        })
+      );
+      ring.userData.doorClickspotId = doorId;
+      ring.userData.isDoorClickspot = true;
+
+      const dot = new THREE.Mesh(
+        new THREE.CircleGeometry(0.05, 32),
+        new THREE.MeshBasicMaterial({
+          color: 0xe30613,
+          transparent: true,
+          opacity: 0.75,
+          depthTest: false,
+          side: THREE.DoubleSide,
+        })
+      );
+      dot.userData.doorClickspotId = doorId;
+      dot.userData.isDoorClickspot = true;
+      ring.add(dot);
+      ring.renderOrder = 999;
+      return ring;
+    }
+
+    function removeDoorClickspots() {
+      doorClickspots.forEach((spot) => {
+        scene.remove(spot);
+        spot.traverse((obj) => {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach((mat) => mat?.dispose?.());
+          }
+        });
+      });
+      doorClickspots.clear();
+      hoveredDoorId = null;
+    }
+
+    function createDoorClickspots(root) {
+      removeDoorClickspots();
+      root.updateMatrixWorld(true);
+
+      DOOR_DEFS.forEach((def) => {
+        const anchor = findDoorAnchor(root, def);
+        if (!anchor) return;
+
+        const position = new THREE.Vector3();
+        anchor.getWorldPosition(position);
+
+        const spot = buildClickspotMesh(def.id);
+        spot.position.copy(position);
+        scene.add(spot);
+        doorClickspots.set(def.id, spot);
+      });
+    }
+
+    function updateDoorClickspots() {
+      if (!currentRoot) return;
+      currentRoot.updateMatrixWorld(true);
+
+      DOOR_DEFS.forEach((def) => {
+        const spot = doorClickspots.get(def.id);
+        if (!spot) return;
+
+        const anchor = findDoorAnchor(currentRoot, def);
+        if (anchor) anchor.getWorldPosition(spot.position);
+
+        spot.quaternion.copy(camera.quaternion);
+        const scale = hoveredDoorId === def.id ? CLICKSPOT_HOVER_SCALE : CLICKSPOT_BASE_SCALE;
+        spot.scale.setScalar(scale);
+      });
+    }
+
+    function getPointerCoords(event) {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    }
+
+    function getDoorIdFromObject(object) {
+      if (!object) return null;
+      if (object.userData.doorClickspotId) return object.userData.doorClickspotId;
+      if (object.userData.doorClickId) return object.userData.doorClickId;
+      let node = object.parent;
+      while (node) {
+        if (node.userData?.doorClickspotId) return node.userData.doorClickspotId;
+        node = node.parent;
+      }
+      return null;
+    }
+
+    function pickDoor(event) {
+      if (!currentRoot) return null;
+      getPointerCoords(event);
+      raycaster.setFromCamera(pointer, camera);
+      const roots = [currentRoot, ...doorClickspots.values()];
+      const hits = raycaster.intersectObjects(roots, true);
+      for (const hit of hits) {
+        const doorId = getDoorIdFromObject(hit.object);
+        if (doorId) return doorId;
+      }
+      return null;
+    }
+
+    function applyRestPose(gltf) {
+      setupModelAnimations(gltf);
+    }
+
+    function msfsToThreePosition(x, y, z) {
+      // MSFS: X=longitudinal, Y=lateral, Z=vertical -> glTF Y-up
+      return new THREE.Vector3(y, z, -x);
+    }
+
+    function findNodeByName(root, name) {
+      let found = null;
+      root.traverse((obj) => {
+        if (!found && obj.name === name) found = obj;
+      });
+      return found;
+    }
+
+    function getCockpitLookTarget(root) {
+      root.updateMatrixWorld(true);
+
+      const pfdNames = ['AS1000_PFD_Screen_2', 'AS1000_PFD_Screen_1', 'AS1000_PFD_Screen_3'];
+      const points = [];
+      pfdNames.forEach((name) => {
+        const node = findNodeByName(root, name);
+        if (!node) return;
+        const point = new THREE.Vector3();
+        node.getWorldPosition(point);
+        points.push(point);
+      });
+
+      if (points.length) {
+        const target = new THREE.Vector3();
+        points.forEach((point) => target.add(point));
+        return target.divideScalar(points.length);
+      }
+
+      // Model uses X=lateral, Y=vertical, Z=longitudinal in world space.
+      return new THREE.Vector3(0, 0.75, 3.85);
+    }
+
+    function createPilotCameraState(root) {
+      root.updateMatrixWorld(true);
+
+      const pilot1 = findNodeByName(root, 'PILOT_1');
+      const pilot0 = findNodeByName(root, 'PILOT_0');
+      const seatNode = pilot1 || pilot0;
+
+      const position = new THREE.Vector3();
+      if (seatNode) {
+        seatNode.getWorldPosition(position);
+        position.y += 0.42;
+      } else {
+        position.copy(msfsToThreePosition(...PILOT_CAMERA.xyz));
+      }
+
+      const target = getCockpitLookTarget(root);
+
+      return { position, target };
+    }
+
+    function applyCameraState(state) {
+      if (!state) return;
+      camera.position.copy(state.position);
+      controls.target.copy(state.target);
+      controls.update();
+    }
+
+    function setCameraView(mode) {
+      cameraViewMode = mode;
+      cameraExteriorBtn.classList.toggle('active', mode === 'exterior');
+      cameraInteriorBtn.classList.toggle('active', mode === 'interior');
+      applyCameraState(mode === 'interior' ? interiorCameraState : exteriorCameraState);
+    }
+
+    function updateCameraButtons() {
+      cameraExteriorBtn.disabled = !exteriorCameraState;
+      cameraInteriorBtn.disabled = !interiorCameraState;
+    }
+
+    function offsetDecalMeshFromSurface(mesh) {
+      if (!mesh?.isMesh || mesh.userData.decalSurfaceOffset) return;
+
+      const geometry = mesh.geometry.clone();
+      mesh.geometry = geometry;
+      if (!geometry.attributes.normal) geometry.computeVertexNormals();
+
+      const position = geometry.attributes.position;
+      const normal = geometry.attributes.normal;
+      const offset = LIVERY_DECAL_SURFACE_OFFSET;
+
+      for (let i = 0; i < position.count; i += 1) {
+        position.setXYZ(
+          i,
+          position.getX(i) + normal.getX(i) * offset,
+          position.getY(i) + normal.getY(i) * offset,
+          position.getZ(i) + normal.getZ(i) * offset,
+        );
+      }
+
+      position.needsUpdate = true;
+      geometry.computeBoundingBox();
+      geometry.computeBoundingSphere();
+      mesh.userData.decalSurfaceOffset = true;
+    }
+
+    function configureLiveryDecalRendering(mesh, mat) {
+      offsetDecalMeshFromSurface(mesh);
+      mat.polygonOffset = true;
+      mat.polygonOffsetFactor = -1;
+      mat.polygonOffsetUnits = -12;
+      mat.depthTest = true;
+      mat.depthWrite = false;
+      mat.side = THREE.DoubleSide;
+      mat.transparent = true;
+      mat.alphaTest = 0.02;
+      mat.opacity = 1;
+      mesh.renderOrder = 20;
+    }
+
+    function isLiveryDecalMaterial(mat) {
+      const name = mat?.name || '';
+      return /TECNAM12_LIVERY|Decal|GeoDecal|LIVERY/i.test(name);
+    }
+
+    function prepareMaterials(object3D) {
+      object3D.traverse((obj) => {
+        if (!obj.isMesh) return;
+        const keepDoorPanel = isExteriorDoorPanel(obj);
+        const inLiveryScene = isInLiveryScene(obj);
+        const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.forEach((mat) => {
+          if (!mat) return;
+          if (mat.map) mat.map.colorSpace = THREE.SRGBColorSpace;
+          if (mat.emissiveMap) mat.emissiveMap.colorSpace = THREE.SRGBColorSpace;
+          if (mat.normalMap) mat.normalScale.y = -1;
+          mat.envMapIntensity = 0.35;
+          if (keepDoorPanel) {
+            mat.side = THREE.DoubleSide;
+            if (mat.name === 'FROST') {
+              mat.transparent = false;
+              mat.opacity = 1;
+              mat.depthWrite = true;
+            }
+          }
+          if (inLiveryScene || isLiveryDecalMaterial(mat) || LIVERY_DECAL_NAME_PATTERN.test(obj.name || '')) {
+            configureLiveryDecalRendering(obj, mat);
+          }
+          mat.needsUpdate = true;
+        });
+      });
+    }
+
+    function isExcludedFromExteriorFrame(object3D) {
+      let node = object3D;
+      while (node) {
+        if (node.userData?.excludeFromExteriorFrame) return true;
+        node = node.parent;
+      }
+      return false;
+    }
+
+    function frameObject(object3D) {
+      object3D.updateMatrixWorld(true);
+      const box = new THREE.Box3();
+      const tempBox = new THREE.Box3();
+      let hasGeometry = false;
+
+      object3D.traverse((obj) => {
+        if (!obj || !obj.visible || obj.isSkinnedMesh) return;
+        if (isExcludedFromExteriorFrame(obj)) return;
+        if (!obj.isMesh || !obj.geometry?.attributes?.position) return;
+        const geometry = obj.geometry;
+        if (!geometry.boundingBox) geometry.computeBoundingBox();
+        if (!geometry.boundingBox || geometry.boundingBox.isEmpty()) return;
+        tempBox.copy(geometry.boundingBox).applyMatrix4(obj.matrixWorld);
+        box.union(tempBox);
+        hasGeometry = true;
+      });
+
+      if (!hasGeometry) {
+        interiorCameraState = createPilotCameraState(object3D);
+        updateCameraButtons();
+        setCameraView(cameraViewMode);
+        return;
+      }
+
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z, 0.001);
+      const distance = (maxDim * 0.5 * EXTERIOR_FRAME_PADDING) / Math.tan((camera.fov * Math.PI) / 360);
+
+      camera.position.copy(center).addScaledVector(EXTERIOR_CAMERA_AZIMUTH, distance);
+      controls.target.copy(center);
+      controls.update();
+      grid.position.y = box.min.y;
+      exteriorCameraState = {
+        position: camera.position.clone(),
+        target: controls.target.clone(),
+      };
+      interiorCameraState = createPilotCameraState(object3D);
+      updateCameraButtons();
+      setCameraView(cameraViewMode);
+    }
+
+    function resetView() {
+      setCameraView(cameraViewMode);
+    }
+
+    function loadModel(model, livery, manager, onProgress) {
+      const loader = createLoader(model, livery, manager);
+      return new Promise((resolve, reject) => {
+        loader.load(
+          model.file,
+          (gltf) => resolve({ model, gltf }),
+          (event) => {
+            if (!onProgress) return;
+            const ratio = event.total ? event.loaded / event.total : 0;
+            onProgress(ratio);
+          },
+          reject
+        );
+      });
+    }
+
+    async function upgradeMaterialTexture(mat, slot, fileName, bases) {
+      if (!mat[slot]) return;
+      const loader = new THREE.TextureLoader();
+      for (const base of bases) {
+        const url = base + fileName;
+        try {
+          const response = await fetch(url, { method: 'HEAD' });
+          if (!response.ok) continue;
+          const texture = await loader.loadAsync(url);
+          texture.colorSpace = slot === 'map' || slot === 'emissiveMap'
+            ? THREE.SRGBColorSpace
+            : THREE.NoColorSpace;
+          mat[slot]?.dispose?.();
+          mat[slot] = texture;
+          mat.needsUpdate = true;
+          return;
+        } catch {
+          // try next base
+        }
+      }
+    }
+
+    async function applyLiveryTextureOverrides(root, livery, onProgress) {
+      if (!livery || livery.id === 'blank') {
+        onProgress?.(1);
+        return;
+      }
+
+      const exteriorBases = [
+        `${ROOT}/liveries/fss/${livery.id}/texture.exterior/`,
+        COMMON_TEXTURE,
+      ];
+      const interiorBases = [
+        `${ROOT}/liveries/fss/${livery.id}/texture.interior/`,
+        COMMON_TEXTURE,
+      ];
+
+      const jobs = [];
+      root.traverse((obj) => {
+        if (!obj.isMesh) return;
+        const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        materials.forEach((mat) => {
+          if (!mat) return;
+          const bases = /exterior|decal|livery/i.test(mat.name || '')
+            ? exteriorBases
+            : [...exteriorBases, ...interiorBases];
+          const slots = ['map', 'normalMap', 'metalnessMap', 'roughnessMap', 'aoMap', 'emissiveMap'];
+          slots.forEach((slot) => {
+            const tex = mat[slot];
+            if (!tex) return;
+            const src = tex.userData?.uri || tex.name || tex.image?.currentSrc || '';
+            const fileName = src.split('/').pop().split('?')[0];
+            if (!/\.(png|jpg|jpeg|webp|ktx2)$/i.test(fileName)) return;
+            jobs.push(upgradeMaterialTexture(mat, slot, fileName, bases));
+          });
+        });
+      });
+
+      await Promise.allSettled(jobs);
+      onProgress?.(1);
+    }
+
+    async function loadScene(variantKey, livery) {
+      const loadId = ++activeLoadId;
+      lastProgress = 0;
+      clearModel();
+      setLoadingUiVisible(true);
+
+      const models = buildModelList(variantKey, livery);
+      const loadingManager = new THREE.LoadingManager();
+      loadingManager.onError = (url) => {
+        console.warn('Failed to load asset:', url);
+      };
+
+      const modelPhaseWeight = 0.88;
+      setProgress(0, `Loading ${models.length} models for ${VARIANTS[variantKey].label}…`, false, true);
+
+      const root = new THREE.Group();
+      const failed = [];
+
+      for (let index = 0; index < models.length; index += 1) {
+        if (loadId !== activeLoadId) return;
+
+        const model = models[index];
+        const reportModelProgress = (assetRatio) => {
+          const overall = ((index + assetRatio) / models.length) * modelPhaseWeight;
+          setProgress(
+            overall,
+            `Loading model ${index + 1}/${models.length}: ${model.file}`,
+            false,
+            true
+          );
+        };
+
+        reportModelProgress(0);
+
+        try {
+          const { gltf } = await loadModel(model, livery, loadingManager, reportModelProgress);
+          if (loadId !== activeLoadId) return;
+          if (model.liveryOnly) gltf.scene.userData.liveryOnlyScene = true;
+          if (model.textureScope === 'interior') {
+            gltf.scene.userData.excludeFromExteriorFrame = true;
+          }
+          applyRestPose(gltf);
+          hideSimOnlyObjects(gltf.scene);
+          hidePassengersAndGroundEquipment(gltf.scene);
+          if (model.hideBlurredProps) hideNonStillProps(gltf.scene);
+          markDoorClickTargets(gltf.scene);
+          prepareMaterials(gltf.scene);
+          root.add(gltf.scene);
+          reportModelProgress(1);
+        } catch (error) {
+          failed.push(model.file);
+          console.error(`Failed to load ${model.file}`, error);
+        }
+      }
+
+      if (loadId !== activeLoadId) return;
+
+      if (root.children.length === 0) {
+        setProgress(0, 'No models could be loaded.', true);
+        setLoadingUiVisible(false);
+        return;
+      }
+
+      setProgress(modelPhaseWeight, 'Applying livery texture overrides…', false, true);
+      await applyLiveryTextureOverrides(root, livery, (ratio) => {
+        setProgress(modelPhaseWeight + ratio * (1 - modelPhaseWeight), 'Applying livery texture overrides…', false, true);
+      });
+
+      if (loadId !== activeLoadId) return;
+
+      currentRoot = root;
+      scene.add(currentRoot);
+
+      try {
+        frameObject(currentRoot);
+      } catch (error) {
+        console.warn('Could not auto-frame model:', error);
+      }
+
+      createDoorClickspots(currentRoot);
+      syncLiveryDoorTransforms(currentRoot);
+
+      if (failed.length) {
+        console.warn(`Loaded with ${failed.length} missing part(s).`);
+      }
+
+      setLoadingUiVisible(false);
+    }
+
+    populateVariantSelect();
+    populateLiverySelect(variantSelect.value);
+
+    variantSelect.addEventListener('change', () => {
+      populateLiverySelect(variantSelect.value);
+      loadScene(variantSelect.value, getSelectedLivery());
+    });
+
+    liverySelect.addEventListener('change', () => {
+      loadScene(variantSelect.value, getSelectedLivery());
+    });
+
+    cameraExteriorBtn.addEventListener('click', () => setCameraView('exterior'));
+    cameraInteriorBtn.addEventListener('click', () => setCameraView('interior'));
+
+    canvas.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+      pointerDown = { x: event.clientX, y: event.clientY };
+    });
+
+    canvas.addEventListener('pointerup', (event) => {
+      if (event.button !== 0 || !pointerDown) return;
+      const dx = event.clientX - pointerDown.x;
+      const dy = event.clientY - pointerDown.y;
+      pointerDown = null;
+      if (Math.hypot(dx, dy) > 6) return;
+      const doorId = pickDoor(event);
+      if (doorId) toggleDoor(doorId);
+    });
+
+    canvas.addEventListener('pointermove', (event) => {
+      if (!currentRoot) {
+        hoveredDoorId = null;
+        canvas.style.cursor = '';
+        return;
+      }
+      hoveredDoorId = pickDoor(event);
+      canvas.style.cursor = hoveredDoorId ? 'pointer' : '';
+    });
+
+    canvas.addEventListener('dblclick', resetView);
+    window.addEventListener('resize', resize);
+    resize();
+
+    loadScene(variantSelect.value, getSelectedLivery());
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      updateDoorAnimation(delta);
+      animationControllers.forEach(({ mixer }) => mixer.update(0));
+      syncLiveryTransforms(currentRoot);
+      updateDoorClickspots();
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    const clock = new THREE.Clock();
+    animate();
+  </script>
+</body>
+</html>

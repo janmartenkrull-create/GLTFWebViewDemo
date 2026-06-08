@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo guid="{1ff01fee-7c01-4f7a-a9b1-9d9658559dcb}" version="1.1">
+	<LODS>
+		<LOD minSize="150" ModelFile="FSS_Tecnam_P2012_LOD00.gltf">		
+		</LOD>
+		<LOD minSize="70" ModelFile="FSS_Tecnam_P2012_LOD01.gltf">		
+		</LOD>
+		<LOD minSize="40" ModelFile="FSS_Tecnam_P2012_LOD02.gltf">		
+		</LOD>
+		<LOD minSize="20" ModelFile="FSS_Tecnam_P2012_LOD03.gltf">		
+		</LOD>
+		<LOD minSize="5" ModelFile="FSS_Tecnam_P2012_LOD04.gltf">
+		</LOD>
+	</LODS>
+
+	<Behaviors>
+		<!-- Includes ###################################### -->
+		<Include ModelBehaviorFile="Asobo\Common.xml" />
+		<Include ModelBehaviorFile="Asobo\Exterior.xml" />
+		<Include ModelBehaviorFile="Asobo\Generic\FX.xml" />
+		<Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml" />
+		<Include ModelBehaviorFile="Asobo\AircraftTypes\Gliders.xml" /> <!-- For yaw string template -->
+		<Include ModelBehaviorFile="Asobo_EX1\DefaultConfig.xml"/>
+		<Include ModelBehaviorFile="Asobo_EX1\Index.xml"/>
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\DoorsExt.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\InputEvents.xml" />		
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\Templates.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\Propeller.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\Walkaround.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\WalkaroundExt.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\Tire.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\StartupSmoke.xml" />
+		<Include ModelBehaviorFile="FSS_Tecnam_P2012\LiveryCone.xml" />
+		<!-- ###################################### -->
+
+		<Component ID="LANDING_FX">
+			<UseTemplate Name="ASOBO_LANDING_FX" />
+		</Component>
+
+		<Component ID="HANDLING">
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>elevator_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:ELEVATOR DEFLECTION PCT, Percent) neg 100 + 2 / 
+					</ANIM_CODE>
+				<INVERT_ANIM>True</INVERT_ANIM>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>elevator_trim</ANIM_NAME>
+				<ANIM_CODE>
+						(A:ELEVATOR TRIM PCT, Percent) 100 + 2 / 
+					</ANIM_CODE>
+				<INVERT_ANIM>True</INVERT_ANIM>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>r_aileron_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:AILERON RIGHT DEFLECTION PCT, Percent) neg 100 + 2 / 
+					</ANIM_CODE>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>l_aileron_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:AILERON RIGHT DEFLECTION PCT, Percent) neg 100 + 2 / 
+					</ANIM_CODE>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>l_aileron_trim_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:AILERON TRIM PCT, Percent) neg 100 + 2 /
+					</ANIM_CODE>
+			</UseTemplate>
+			<!-- <UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>l_flap_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:TRAILING EDGE FLAPS LEFT PERCENT, Percent) 
+					</ANIM_CODE>
+			</UseTemplate> -->
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>r_flap_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:TRAILING EDGE FLAPS RIGHT PERCENT, Percent) 
+					</ANIM_CODE>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>rudder_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						(A:RUDDER DEFLECTION PCT, Percent)  100 + 2 / 
+					</ANIM_CODE>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Anim_Code">
+				<ANIM_NAME>rudder_trim_percent_key</ANIM_NAME>
+				<ANIM_CODE>
+						100 (A:RUDDER TRIM PCT, percent) 100 + 2 /
+					</ANIM_CODE>
+			</UseTemplate>
+		</Component>
+
+		<ParametersFn Name="GET_WALKAROUND_PARAMS">
+			<ReturnParameters>
+				<CAM_TYPE>2</CAM_TYPE>
+				<EFB_CAM_RANGE>5 10</EFB_CAM_RANGE>
+			</ReturnParameters>
+		</ParametersFn>
+
+		<ParametersFn Name="GET_PROP_PARAMS">
+			<ReturnParameters>
+				<DISABLE_ANIM_CODE>
+					(A:GENERAL ENG COMBUSTION:#ID#, Bool) if{
+						1 (&gt;O:ENG_WAS_ON)
+					} els{
+						(A:PROP RPM:#ID#, rpm) 0 == if{
+							0 (&gt;O:ENG_WAS_ON)
+						}
+					}
+					(A:IS LATITUDE LONGITUDE FREEZE ON, Bool) (O:ENG_WAS_ON) ! and
+					(L:FSS_P2006T_ENGINE_SIM_RPM_OVD_#ID#) 0 == or
+				</DISABLE_ANIM_CODE>
+				<ANIM_INC_SCALE_CODE>
+					(L:FSS_P2006T_OIL_LEVEL_PERCENT_#ID#) 20 min 20 / 1 (L:FSS_P2006T_OPSMODE) ?
+				</ANIM_INC_SCALE_CODE>
+			</ReturnParameters>
+		</ParametersFn>
+
+		<Component ID="Engine">
+			<Parameters Type="Default">
+				<UseParametersFn Name="GET_WALKAROUND_PARAMS" />
+			</Parameters>			
+			<UseTemplate Name="FSS_ENGINE_PROPELLER">
+				<ID>1</ID>
+				<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				<MIN_RPM_FOR_SLOW>300</MIN_RPM_FOR_SLOW>
+				<MIN_RPM_FOR_BLUR>600</MIN_RPM_FOR_BLUR>
+				<ANIM_NODE_ID>Empty_Prop_Left</ANIM_NODE_ID>
+				<ANIM_NAME>engine_left_rot</ANIM_NAME>
+				<INVERT_ANIM>True</INVERT_ANIM>
+				<STILL_NODE_ID>prop_still_left</STILL_NODE_ID>
+				<SLOW_NODE_ID>prop_slow_l</SLOW_NODE_ID>
+				<PROP_BLURRED_NODE_ID>prop_blurred_l</PROP_BLURRED_NODE_ID>
+				<CONE_BLURRED_NODE_ID>Prop_Cone_Left</CONE_BLURRED_NODE_ID>
+				<PROP_SIDE_BLURRED_NODE_ID>prop_side_l</PROP_SIDE_BLURRED_NODE_ID>
+				<PROPELLER_OFFSET_VAR>FSS_P2006T_PROPELLER_OFFSET_1</PROPELLER_OFFSET_VAR>
+				<PROPELLER_STATE_VAR>FSS_P2012_PROPELLER_STATE_1</PROPELLER_STATE_VAR>
+				<IS_STARTER_ON_CODE>(GENERAL ENG STARTER:1, Bool)</IS_STARTER_ON_CODE>
+				<GET_ANIM_INC_CODE>6</GET_ANIM_INC_CODE>
+				<UseParametersFn Name="GET_PROP_PARAMS">
+					<ID>1</ID>
+				</UseParametersFn>
+			</UseTemplate>
+
+			<UseTemplate Name="FSS_ENGINE_PROPELLER">
+				<ID>2</ID>
+				<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				<MIN_RPM_FOR_SLOW>300</MIN_RPM_FOR_SLOW>
+				<MIN_RPM_FOR_BLUR>600</MIN_RPM_FOR_BLUR>
+				<ANIM_NODE_ID>Empty_Prop_Right</ANIM_NODE_ID>
+				<ANIM_NAME>engine_right_rot</ANIM_NAME>
+				<INVERT_ANIM>True</INVERT_ANIM>
+				<STILL_NODE_ID>prop_still_right</STILL_NODE_ID>
+				<SLOW_NODE_ID>prop_slow_r</SLOW_NODE_ID>
+				<PROP_BLURRED_NODE_ID>prop_blurred_r</PROP_BLURRED_NODE_ID>
+				<CONE_BLURRED_NODE_ID>Prop_Cone_Right</CONE_BLURRED_NODE_ID>
+				<PROP_SIDE_BLURRED_NODE_ID>prop_side_r</PROP_SIDE_BLURRED_NODE_ID>
+				<PROPELLER_OFFSET_VAR>FSS_P2006T_PROPELLER_OFFSET_2</PROPELLER_OFFSET_VAR>
+				<PROPELLER_STATE_VAR>FSS_P2012_PROPELLER_STATE_2</PROPELLER_STATE_VAR>
+				<IS_STARTER_ON_CODE>(GENERAL ENG STARTER:2, Bool)</IS_STARTER_ON_CODE>
+				<GET_ANIM_INC_CODE>6</GET_ANIM_INC_CODE>
+				<UseParametersFn Name="GET_PROP_PARAMS">
+					<ID>2</ID>
+				</UseParametersFn>
+			</UseTemplate>
+		</Component>
+
+		<Component ID="LandingGear">
+			<Parameters Type="Default">				
+				<VIS_CAM_RANGE_CODE>1</VIS_CAM_RANGE_CODE>
+				<UseParametersFn Name="ASOBO_Configure_Global_Parameters"/>
+				<DISABLE_ANIM_CODE>(A:IS LATITUDE LONGITUDE FREEZE ON, Bool)</DISABLE_ANIM_CODE>
+			</Parameters>			
+			<Component ID="Front">
+				<Component ID="Interactions">
+					<UseTemplate Name="ASOBO_CT_Observe_Interaction_Template">
+						<TOOLTIP_ID>NOSE_GEAR_TIRE</TOOLTIP_ID>
+						<IE_TOOLTIP_DESCRIPTION_ID>@TT_Package.ACTION.CHECK</IE_TOOLTIP_DESCRIPTION_ID>
+						<IN_BASE_NAME>Tecnam_Wheel_F</IN_BASE_NAME>
+						<IE_ID_SOURCE>INTERACTIONS</IE_ID_SOURCE>
+						<IE_NAME>NOSE_WHEEL</IE_NAME>
+						<SaveParameters ID="WearAndTearElements">
+							<TIRE>&apos;NOSE_WHEEL&apos;_n</TIRE>
+							<TIRE_PRESSURE>&apos;NOSE_WHEEL&apos;_n</TIRE_PRESSURE>
+						</SaveParameters>
+					</UseTemplate>
+				</Component>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>fwd_landing_retract</ANIM_NAME>
+					<ANIM_CODE>
+						100 (A:GEAR CENTER POSITION, Percent) -
+					</ANIM_CODE>
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>fwd_lg_compression</ANIM_NAME>
+					<ANIM_CODE>
+						(A:CONTACT POINT COMPRESSION:0, Percent) 
+					</ANIM_CODE>
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>fwd_wheel_dir</ANIM_NAME>
+					<ANIM_CODE>
+						(A:GEAR CENTER STEER ANGLE PCT, percent) 100 + 2 / 
+					</ANIM_CODE>
+				</UseTemplate>
+				<UseTemplate Name="FSS_GEAR_CENTER_TIRE">
+					<ANIM_NAME>fwd_wheel_rot</ANIM_NAME>
+					<NODE_ID_STILL>Tecnam_Wheel_F</NODE_ID_STILL>
+					<NODE_ID_BLURRED>Tecnam_Wheel_F_Blurred</NODE_ID_BLURRED>					
+				</UseTemplate>
+			</Component>
+
+			<Component ID="Left">
+				<Component ID="Interactions">
+					<UseTemplate Name="ASOBO_CT_Observe_Interaction_Template">
+						<TOOLTIP_ID>LEFT_TIRE</TOOLTIP_ID>
+						<IE_TOOLTIP_DESCRIPTION_ID>@TT_Package.ACTION.CHECK</IE_TOOLTIP_DESCRIPTION_ID>
+						<IN_BASE_NAME>Tecnam_Wheel_L</IN_BASE_NAME>
+						<IE_ID_SOURCE>INTERACTIONS</IE_ID_SOURCE>
+						<IE_NAME>LEFT_WHEEL</IE_NAME>
+						<SaveParameters ID="WearAndTearElements">
+							<TIRE>&apos;LEFT_WHEEL&apos;_n</TIRE>
+							<TIRE_PRESSURE>&apos;LEFT_WHEEL&apos;_n</TIRE_PRESSURE>
+						</SaveParameters>
+					</UseTemplate>
+				</Component>
+				<UseTemplate Name="FSS_GEAR_LEFT_TIRE">
+					<ANIM_NAME>l_rear_wheel_rot</ANIM_NAME>
+					<NODE_ID_STILL>Tecnam_Wheel_L</NODE_ID_STILL>
+					<NODE_ID_BLURRED>Tecnam_Wheel_L_Blurred</NODE_ID_BLURRED>															
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>l_landing_retract</ANIM_NAME>
+					<ANIM_CODE>
+						100 (A:GEAR LEFT POSITION, Percent) -
+					</ANIM_CODE>
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>l_landing_compress</ANIM_NAME>
+					<ANIM_CODE>
+						(A:CONTACT POINT COMPRESSION:1, Percent) 
+					</ANIM_CODE>
+				</UseTemplate>
+			</Component>
+
+			<Component ID="Right">
+				<Component ID="Interactions">
+					<UseTemplate Name="ASOBO_CT_Observe_Interaction_Template">
+						<TOOLTIP_ID>RIGHT_TIRE</TOOLTIP_ID>
+						<IE_TOOLTIP_DESCRIPTION_ID>@TT_Package.ACTION.CHECK</IE_TOOLTIP_DESCRIPTION_ID>
+						<IN_BASE_NAME>Tecnam_Wheel_R</IN_BASE_NAME>
+						<IE_ID_SOURCE>INTERACTIONS</IE_ID_SOURCE>
+						<IE_NAME>RIGHT_WHEEL</IE_NAME>
+						<SaveParameters ID="WearAndTearElements">
+							<TIRE>&apos;RIGHT_WHEEL&apos;_n</TIRE>
+							<TIRE_PRESSURE>&apos;RIGHT_WHEEL&apos;_n</TIRE_PRESSURE>
+						</SaveParameters>
+					</UseTemplate>
+				</Component>
+				<UseTemplate Name="FSS_GEAR_RIGHT_TIRE">
+					<ANIM_NAME>r_rear_wheel_rot</ANIM_NAME>
+					<NODE_ID_STILL>Tecnam_Wheel_R</NODE_ID_STILL>
+					<NODE_ID_BLURRED>Tecnam_Wheel_R_Blurred</NODE_ID_BLURRED>					
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>r_landing_compress</ANIM_NAME>
+					<ANIM_CODE>
+						(A:CONTACT POINT COMPRESSION:2, Percent) 
+					</ANIM_CODE>
+				</UseTemplate>
+				<UseTemplate Name="ASOBO_GT_Anim_Code">
+					<ANIM_NAME>r_landing_retract</ANIM_NAME>
+					<ANIM_CODE>
+						100 (A:GEAR RIGHT POSITION, Percent) -
+					</ANIM_CODE>
+				</UseTemplate>
+			</Component>
+		</Component>
+
+		<Component ID="Doors">
+			<UseTemplate Name="FSS_DOORS_EXT" />
+
+			<UseTemplate Name="ASOBO_DOOR_InteractivePoint_Template">
+                <ID>2</ID>
+                <ANIM_NAME>Back_Door</ANIM_NAME>
+            </UseTemplate>
+			<UseTemplate Name="ASOBO_DOOR_InteractivePoint_Template">
+                <ID>4</ID>
+                <ANIM_NAME>Cargo_Door</ANIM_NAME>
+            </UseTemplate>
+		</Component>
+
+		<Component ID="Walkaround">
+			<Parameters Type="Default">
+				<UseParametersFn Name="GET_WALKAROUND_PARAMS" />
+			</Parameters>
+			<Component ID="WALKAROUND_ELEVATOR" Node="Empty_Elevator">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_Rudder" Node="Empty_Rudder">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_AILERON_LEFT" Node="Tecnam_Aileron_Left">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_AILERON_RIGHT" Node="Tecnam_Aileron_Right">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_TIEDOWN_BRACKET_LEFT" Node="Tiedown_bracket_L">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<VAR_NAME>WALKAROUND_LEFT_TIEDOWN</VAR_NAME>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_TIEDOWN_BRACKET_RIGHT" Node="Tiedown_bracket_R">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<VAR_NAME>WALKAROUND_RIGHT_TIEDOWN</VAR_NAME>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_LEFT_OIL" Node="Tecnam_Oil_Check_L">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<Component ID="WALKAROUND_RIGHT_OIL" Node="Tecnam_Oil_Check_R">
+				<UseTemplate Name="FSS_WALKAROUND_EXTERIOR_VISIBILITY">
+					<CAM_RANGE>#EFB_CAM_RANGE#</CAM_RANGE>
+				</UseTemplate>
+			</Component>
+			<UseTemplate Name="FSS_WALKAROUND_EXT" />
+		</Component>
+
+		<!-- ground power unit -->
+		<Component ID="GROUND_POWER_UNIT">
+			<Parameters Type="Default">
+				<VALUE_CODE>(L:FSS_P2012_EXTERNAL_POWER_AVAILABLE) (L:FSS_P2012_EXTERNAL_POWER_ON) *</VALUE_CODE>
+			</Parameters>
+			<UseTemplate Name="FSS_SMOOTH_ANIM">
+				<ANIM_DURATION>5</ANIM_DURATION>
+				<ANIM_NAME>gpu</ANIM_NAME>
+				<EXTRA_CODE>
+					#VALUE_CODE# 100 * (&gt;O:ANIM_TARGET_POS)
+				</EXTRA_CODE>
+			</UseTemplate>			
+		</Component>
+
+		<Component ID="DEICE_LIGHT" Node="DEICE_LIGHT">
+			<UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+                <EMISSIVE_CODE>(A:LIGHT WING:1, Bool)</EMISSIVE_CODE>
+            </UseTemplate>
+		</Component>
+
+		<Component ID="STARTUP_SMOKE">
+			<UseTemplate Name="FSS_STARTUP_SMOKE">
+				<ID>1</ID>
+				<FX_GUID>{5E3D9ABA-BF43-485F-AED6-45F378B84E5D}</FX_GUID>
+				<NODE_ID>exhaust_node_engine_L</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="FSS_STARTUP_SMOKE">
+				<ID>2</ID>
+				<FX_GUID>{5E3D9ABA-BF43-485F-AED6-45F378B84E5D}</FX_GUID>
+				<NODE_ID>exhaust_node_engine_R</NODE_ID>
+			</UseTemplate>
+		</Component>
+
+		<Component ID="LIVERY_CONE">
+			<UseTemplate Name="FSS_LIVERY_CONE">
+				<LEFT_PROP_VAR>FSS_P2012_PROPELLER_STATE_1</LEFT_PROP_VAR>
+				<RIGHT_PROP_VAR>FSS_P2012_PROPELLER_STATE_2</RIGHT_PROP_VAR>
+			</UseTemplate>
+		</Component>
+	</Behaviors>
+</ModelInfo>

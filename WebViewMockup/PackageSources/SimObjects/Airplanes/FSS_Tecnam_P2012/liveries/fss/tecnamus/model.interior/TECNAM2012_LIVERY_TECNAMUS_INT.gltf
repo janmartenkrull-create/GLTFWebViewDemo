@@ -1,0 +1,1052 @@
+{
+    "asset" : {
+        "extensions" : {
+            "ASOBO_normal_map_convention" : {
+                "tangent_space_convention" : "DirectX"
+            }
+        },
+        "generator" : "Khronos glTF Blender I/O v1.8.19 and Asobo Studio MSFS Blender I/O v1.3.0",
+        "version" : "2.0"
+    },
+    "extensionsUsed" : [
+        "ASOBO_normal_map_convention",
+        "ASOBO_unique_id",
+        "ASOBO_material_blend_gbuffer",
+        "ASOBO_material_shadow_options"
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1,
+                2,
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                30
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Pivot_FrontDoor.002"
+                }
+            },
+            "name" : "Pivot_FrontDoor.002",
+            "translation" : [
+                -0.7946386337280273,
+                0.40182462334632874,
+                3.7393646240234375
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Pivot_FrontDoor.001"
+                }
+            },
+            "name" : "Pivot_FrontDoor.001",
+            "translation" : [
+                0.7945328950881958,
+                0.40186551213264465,
+                3.736912727355957
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_SAFETY_Switch_ELT"
+                }
+            },
+            "name" : "Empty_SAFETY_Switch_ELT",
+            "scale" : [
+                0.02210145629942417,
+                0.02210145629942417,
+                0.02210145629942417
+            ],
+            "translation" : [
+                0.1642821580171585,
+                0.6739806532859802,
+                3.8516502380371094
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_TrimPiston"
+                }
+            },
+            "name" : "Empty_Rudder_TrimPiston",
+            "rotation" : [
+                0.11060164123773575,
+                0,
+                0,
+                0.9938648343086243
+            ],
+            "scale" : [
+                8.7692289352417,
+                8.769229888916016,
+                8.769229888916016
+            ],
+            "translation" : [
+                0.5068716406822205,
+                -5.309929847717285,
+                0.12335586547851562
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "TECNAMUS_LIVERY.016"
+                }
+            },
+            "mesh" : 0,
+            "name" : "TECNAMUS_LIVERY.016",
+            "rotation" : [
+                0,
+                0.03203887119889259,
+                0,
+                0.9994866251945496
+            ],
+            "translation" : [
+                0.014776051975786686,
+                0.7417445778846741,
+                -5.346394062042236
+            ]
+        },
+        {
+            "children" : [
+                4
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "TECNAMUS_LIVERY.009"
+                }
+            },
+            "mesh" : 1,
+            "name" : "TECNAMUS_LIVERY.009",
+            "rotation" : [
+                0.11060163378715515,
+                0,
+                0,
+                0.9938648343086243
+            ],
+            "scale" : [
+                8.7692289352417,
+                8.769229888916016,
+                8.769229888916016
+            ],
+            "translation" : [
+                0,
+                -11.693674087524414,
+                45.16934585571289
+            ]
+        },
+        {
+            "children" : [
+                3,
+                5
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Trim"
+                }
+            },
+            "name" : "Empty_Rudder_Trim",
+            "scale" : [
+                0.16706061363220215,
+                0.16706059873104095,
+                0.16706059873104095
+            ]
+        },
+        {
+            "children" : [
+                6
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Trim_Dir"
+                }
+            },
+            "name" : "Empty_Rudder_Trim_Dir",
+            "rotation" : [
+                0.09237058460712433,
+                0,
+                0,
+                0.9957247376441956
+            ],
+            "scale" : [
+                2.858394145965576,
+                2.858394145965576,
+                2.858394145965576
+            ],
+            "translation" : [
+                0,
+                -1.3211040496826172,
+                -2.6558990478515625
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "TECNAMUS_LIVERY.005"
+                }
+            },
+            "mesh" : 2,
+            "name" : "TECNAMUS_LIVERY.005",
+            "rotation" : [
+                0.20193266868591309,
+                0,
+                0,
+                0.9793994426727295
+            ],
+            "scale" : [
+                4.187526702880859,
+                4.187526702880859,
+                4.187526702880859
+            ],
+            "translation" : [
+                0,
+                -3.814697265625e-06,
+                -7.62939453125e-06
+            ]
+        },
+        {
+            "children" : [
+                7,
+                8
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder"
+                }
+            },
+            "name" : "Empty_Rudder",
+            "scale" : [
+                2.4395744800567627,
+                2.4395742416381836,
+                2.4395742416381836
+            ],
+            "translation" : [
+                0,
+                -3.814697265625e-06,
+                0
+            ]
+        },
+        {
+            "children" : [
+                9
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Rudder_Dir"
+                }
+            },
+            "name" : "Empty_Rudder_Dir",
+            "rotation" : [
+                -0.20193269848823547,
+                0,
+                0,
+                0.9793995022773743
+            ],
+            "scale" : [
+                0.09788775444030762,
+                0.09788775444030762,
+                0.09788775444030762
+            ],
+            "translation" : [
+                0,
+                2.1486072540283203,
+                -4.911612033843994
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_Prop_Right"
+                }
+            },
+            "mesh" : 3,
+            "name" : "LIVERY_Prop_Right",
+            "scale" : [
+                1.0047926902770996,
+                1.0047926902770996,
+                1.0047926902770996
+            ]
+        },
+        {
+            "children" : [
+                11
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_Right"
+                }
+            },
+            "name" : "Empty_Prop_Right",
+            "translation" : [
+                -2.2361998558044434,
+                1.4452662467956543,
+                2.6969008445739746
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LIVERY_Prop_Left"
+                }
+            },
+            "mesh" : 4,
+            "name" : "LIVERY_Prop_Left",
+            "rotation" : [
+                0,
+                0,
+                -0.06279049813747406,
+                0.9980267286300659
+            ]
+        },
+        {
+            "children" : [
+                13
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Prop_Left"
+                }
+            },
+            "name" : "Empty_Prop_Left",
+            "translation" : [
+                2.236196279525757,
+                1.4452660083770752,
+                2.6969010829925537
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Front_Baggage"
+                }
+            },
+            "name" : "Empty_Front_Baggage"
+        },
+        {
+            "children" : [
+                15
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_FB_DIR_01"
+                }
+            },
+            "name" : "Empty_FB_DIR_01",
+            "rotation" : [
+                0.1251620203256607,
+                -0.1269073337316513,
+                0.016144651919603348,
+                0.983853816986084
+            ],
+            "translation" : [
+                0.5014516711235046,
+                0.6602897047996521,
+                4.770514488220215
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_EMG_EXIT"
+                }
+            },
+            "name" : "Empty_EMG_EXIT"
+        },
+        {
+            "children" : [
+                17
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_EMG_EXIT.001"
+                }
+            },
+            "name" : "Empty_EMG_EXIT.001",
+            "rotation" : [
+                0,
+                -0.0532074011862278,
+                0,
+                0.9985834956169128
+            ],
+            "translation" : [
+                -0.685478150844574,
+                1.1870391368865967,
+                -0.8958374261856079
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Elevator_Trim"
+                }
+            },
+            "name" : "Empty_Elevator_Trim",
+            "scale" : [
+                6.91848087310791,
+                6.91848087310791,
+                6.91848087310791
+            ],
+            "translation" : [
+                0,
+                -0.43526744842529297,
+                -2.2754745483398438
+            ]
+        },
+        {
+            "children" : [
+                19
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Elevator"
+                }
+            },
+            "name" : "Empty_Elevator",
+            "scale" : [
+                0.14454039931297302,
+                0.14454039931297302,
+                0.14454039931297302
+            ],
+            "translation" : [
+                0,
+                0.680353045463562,
+                -5.261984348297119
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_03"
+                }
+            },
+            "name" : "Empty_Back_Door_03",
+            "rotation" : [
+                0,
+                0.0449993722140789,
+                0,
+                0.9989870190620422
+            ],
+            "translation" : [
+                0.6727331876754761,
+                1.188260555267334,
+                -1.0380429029464722
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_02"
+                }
+            },
+            "name" : "Empty_Back_Door_02",
+            "translation" : [
+                0.707481324672699,
+                0.5695831775665283,
+                -1.9556365013122559
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Back_Door_01"
+                }
+            },
+            "name" : "Empty_Back_Door_01",
+            "rotation" : [
+                0,
+                0.022859767079353333,
+                0,
+                0.9997386932373047
+            ],
+            "translation" : [
+                0.7138089537620544,
+                -0.030736953020095825,
+                -0.9987364411354065
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Aileron_Right"
+                }
+            },
+            "name" : "Empty_Aileron_Right",
+            "rotation" : [
+                0,
+                0.04361938685178757,
+                0,
+                0.9990482330322266
+            ],
+            "scale" : [
+                0.22572457790374756,
+                0.22572457790374756,
+                0.22572457790374756
+            ],
+            "translation" : [
+                -5.729720115661621,
+                1.4682817459106445,
+                0.16318213939666748
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Empty_Aileron_Left"
+                }
+            },
+            "name" : "Empty_Aileron_Left",
+            "rotation" : [
+                0,
+                -0.04361938685178757,
+                0,
+                0.9990482330322266
+            ],
+            "scale" : [
+                0.17323637008666992,
+                0.17323637008666992,
+                0.17323637008666992
+            ],
+            "translation" : [
+                5.749405860900879,
+                1.4679572582244873,
+                0.1634281873703003
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim.001"
+                }
+            },
+            "name" : "BoneRudder_Trim.001",
+            "rotation" : [
+                0.6141080856323242,
+                0.28072652220726013,
+                0.34964340925216675,
+                0.649471640586853
+            ],
+            "scale" : [
+                1,
+                0.9999998807907104,
+                0.9999998807907104
+            ],
+            "translation" : [
+                0.2681449055671692,
+                -0.025274483487010002,
+                0.05765863507986069
+            ]
+        },
+        {
+            "children" : [
+                26
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim"
+                }
+            },
+            "name" : "BoneRudder_Trim",
+            "rotation" : [
+                0.10798034071922302,
+                3.1487239482430596e-08,
+                4.932165609261574e-08,
+                0.9941530227661133
+            ],
+            "translation" : [
+                1.1213129482712247e-06,
+                -4.104658603668213,
+                -3.5610265731811523
+            ]
+        },
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder_Trim.002"
+                }
+            },
+            "name" : "BoneRudder_Trim.002",
+            "rotation" : [
+                -0.6258821487426758,
+                -0.029759954661130905,
+                -0.04660286381840706,
+                0.7779550552368164
+            ],
+            "scale" : [
+                0.9999998807907104,
+                0.9999999403953552,
+                0.9999999403953552
+            ],
+            "translation" : [
+                0.15880541503429413,
+                -4.3535075187683105,
+                -2.540966510772705
+            ]
+        },
+        {
+            "children" : [
+                27,
+                28
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "BoneRudder"
+                }
+            },
+            "name" : "BoneRudder",
+            "rotation" : [
+                -0.21538487076759338,
+                5.014607132314275e-11,
+                5.0146064384248845e-11,
+                0.9765292406082153
+            ],
+            "scale" : [
+                1,
+                0.9999999403953552,
+                0.9999999403953552
+            ],
+            "translation" : [
+                -1.818541193188139e-07,
+                2.508025884628296,
+                2.123438835144043
+            ]
+        },
+        {
+            "children" : [
+                29
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Armature_RudderTrim"
+                }
+            },
+            "name" : "Armature_RudderTrim",
+            "scale" : [
+                0.21555858850479126,
+                0.21555858850479126,
+                0.21555858850479126
+            ],
+            "translation" : [
+                0,
+                1.607980728149414,
+                -5.369338035583496
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "alphaMode" : "BLEND",
+            "extensions" : {
+                "ASOBO_material_blend_gbuffer" : {
+                    "enabled" : true,
+                    "baseColorBlendFactor" : 1,
+                    "metallicBlendFactor" : 0,
+                    "roughnessBlendFactor" : 0,
+                    "normalBlendFactor" : 0,
+                    "emissiveBlendFactor" : 0,
+                    "occlusionBlendFactor" : 0
+                },
+                "ASOBO_material_shadow_options" : {
+                    "noCastShadow" : true
+                }
+            },
+            "name" : "TECNAM12_LIVERY_TECNAMUS",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.30000001192092896
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Plane.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Cube.014",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Cube.008",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 8,
+                        "NORMAL" : 9,
+                        "TEXCOORD_0" : 10
+                    },
+                    "indices" : 11,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Circle.006",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 12,
+                        "NORMAL" : 13,
+                        "TEXCOORD_0" : 14
+                    },
+                    "indices" : 15,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Circle.007",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 16,
+                        "NORMAL" : 17,
+                        "TEXCOORD_0" : 18
+                    },
+                    "indices" : 19,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "TECNAM12_DECAL_TECNAMUS",
+            "uri" : "TECNAM12_DECAL_TECNAMUS.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 784,
+            "max" : [
+                0.05347539484500885,
+                0.014172929339110851,
+                0.027698703110218048
+            ],
+            "min" : [
+                -0.07926724851131439,
+                -0.016503281891345978,
+                -0.09417084604501724
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 784,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 784,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 3120,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 490,
+            "max" : [
+                0.062452711164951324,
+                0.7558262348175049,
+                -5.232604503631592
+            ],
+            "min" : [
+                -0.06245274096727371,
+                -0.19490353763103485,
+                -5.621674537658691
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 490,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 490,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 1872,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 2085,
+            "max" : [
+                0.09132464975118637,
+                1.283930778503418,
+                0.45357996225357056
+            ],
+            "min" : [
+                -0.09132464975118637,
+                -1.010095477104187,
+                -1.013723611831665
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 2085,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 10,
+            "componentType" : 5126,
+            "count" : 2085,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 11,
+            "componentType" : 5123,
+            "count" : 8373,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 12,
+            "componentType" : 5126,
+            "count" : 2853,
+            "max" : [
+                0.2033289670944214,
+                0.20328857004642487,
+                0.4053325653076172
+            ],
+            "min" : [
+                -0.2033299207687378,
+                -0.2033701092004776,
+                -0.1678294837474823
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 13,
+            "componentType" : 5126,
+            "count" : 2853,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 14,
+            "componentType" : 5126,
+            "count" : 2853,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 15,
+            "componentType" : 5123,
+            "count" : 14574,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 16,
+            "componentType" : 5126,
+            "count" : 2852,
+            "max" : [
+                0.20333349704742432,
+                0.20328857004642487,
+                0.4053325653076172
+            ],
+            "min" : [
+                -0.20332491397857666,
+                -0.2033701092004776,
+                -0.1678294837474823
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 17,
+            "componentType" : 5126,
+            "count" : 2852,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 18,
+            "componentType" : 5126,
+            "count" : 2852,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 19,
+            "componentType" : 5123,
+            "count" : 14574,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 9408,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9408,
+            "byteOffset" : 9408
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6272,
+            "byteOffset" : 18816
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6240,
+            "byteOffset" : 25088
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5880,
+            "byteOffset" : 31328
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5880,
+            "byteOffset" : 37208
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3920,
+            "byteOffset" : 43088
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3744,
+            "byteOffset" : 47008
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 25020,
+            "byteOffset" : 50752
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 25020,
+            "byteOffset" : 75772
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16680,
+            "byteOffset" : 100792
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16746,
+            "byteOffset" : 117472
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34236,
+            "byteOffset" : 134220
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34236,
+            "byteOffset" : 168456
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22824,
+            "byteOffset" : 202692
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 29148,
+            "byteOffset" : 225516
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34224,
+            "byteOffset" : 254664
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 34224,
+            "byteOffset" : 288888
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 22816,
+            "byteOffset" : 323112
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 29148,
+            "byteOffset" : 345928
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 375076,
+            "uri" : "TECNAM2012_LIVERY_TECNAMUS_INT.bin"
+        }
+    ]
+}
