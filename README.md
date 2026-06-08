@@ -1,24 +1,27 @@
 # FSS Tecnam P2012 — 3D Web Demo
 
-Interaktiver glTF-Viewer für das Tecnam P2012 (Three.js).
+Interactive glTF viewer for the Tecnam P2012 (Three.js).
 
-**Live-Demo:** https://janmartenkrull-create.github.io/GLTFWebViewDemo/
+**Live demo:** https://janmartenkrull-create.github.io/GLTFWebViewDemo/
 
-## Lokal starten
+## Run locally
 
 ```powershell
 cd WebViewMockup
 .\serve.ps1
 ```
 
-Browser: http://localhost:8081/index.html
+Open http://localhost:8081/index.html
 
-## Assets
+## Refresh assets
 
-Dieses Repo enthält **nur web-optimierte Assets** (~115 MB, Texturen max. 1024 px) unter `WebViewMockup/PackageSources/`.
+```powershell
+cd WebViewMockup
+.\build-package.ps1
+```
 
-Zum Aktualisieren aus dem vollen MSFS-Projekt lokal `build-package.ps1` ausführen (benötigt `PackageSources/` im übergeordneten Aircraft-Repo).
+Copies models and liveries from `PackageSources/` in the full MSFS aircraft repo and downscales textures to 1024 px for web delivery.
 
-## Entwicklung
+## Development
 
-Dev-Viewer unter `tools/gltf-viewer/` (Port 8080 via `serve.ps1`).
+Dev viewer under `tools/gltf-viewer/` (port 8080 via `serve.ps1`).

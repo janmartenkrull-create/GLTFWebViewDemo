@@ -219,8 +219,8 @@
         </div>
         <div class="loading-ui" id="loadingUi" hidden>
           <p class="notice">
-            Initial loading can take several seconds. Textures are the full-resolution MSFS source
-            assets and were not optimized for web delivery.
+            Initial loading can take 10–20 seconds on first visit. Assets are web-optimized
+            (1024 px textures) for faster delivery on GitHub Pages.
           </p>
           <div class="progress-wrap">
             <div class="progress-track">
@@ -267,9 +267,12 @@
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
     const pathname = location.pathname.replace(/\\/g, '/');
-    const ROOT = pathname.includes('/tools/gltf-viewer/')
-      ? '../../PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012'
-      : 'PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012';
+    const repoBase = (() => {
+      if (pathname.includes('/tools/gltf-viewer/')) return '../../';
+      const dir = pathname.replace(/\/[^/]*$/, '/');
+      return dir.endsWith('/') ? dir : `${dir}/`;
+    })();
+    const ROOT = `${repoBase}PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012`;
     const COMMON_TEXTURE = `${ROOT}/common/texture/`;
 
     const HIDE_MATERIAL_PATTERN = /collision|invisible|occluder|environtment|\$PFD_|\$MFD_|\$DRM_|\$EFB_|\$RegistrationNumber|sunshade|suncover|(?:^FROST$)|(?:^FSS_Tecnam12_Checklist$)|GeoDecalFrosted/i;
@@ -1120,7 +1123,7 @@
 
     function isLiveryDecalMaterial(mat) {
       const name = mat?.name || '';
-      return /TECNAM12_LIVERY|Decal|GeoDecal|LIVERY/i.test(name);
+      return /TECNAM12_(?:DECAL|LIVERY)|GeoDecal|_Decal_/i.test(name);
     }
 
     function isGlassMaterial(mat) {
@@ -1249,8 +1252,6 @@
       for (const base of bases) {
         const url = base + fileName;
         try {
-          const response = await fetch(url, { method: 'HEAD' });
-          if (!response.ok) continue;
           const texture = await loader.loadAsync(url);
           texture.colorSpace = slot === 'map' || slot === 'emissiveMap'
             ? THREE.SRGBColorSpace
