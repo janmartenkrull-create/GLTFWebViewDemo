@@ -26,6 +26,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify PackageSources (no Git LFS pointers)
+        shell: pwsh
+        run: ./WebViewMockup/verify-assets.ps1
+
       - name: Prepare GitHub Pages artifact
         shell: bash
         run: |

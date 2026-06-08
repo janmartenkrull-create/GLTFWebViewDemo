@@ -267,12 +267,10 @@
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
     const pathname = location.pathname.replace(/\\/g, '/');
-    const repoBase = (() => {
-      if (pathname.includes('/tools/gltf-viewer/')) return '../../';
-      const dir = pathname.replace(/\/[^/]*$/, '/');
-      return dir.endsWith('/') ? dir : `${dir}/`;
-    })();
-    const ROOT = `${repoBase}PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012`;
+    const BUILD_ID = '20260608-sync';
+    const ROOT = pathname.includes('/tools/gltf-viewer/')
+      ? '../../PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012'
+      : 'PackageSources/SimObjects/Airplanes/FSS_Tecnam_P2012';
     const COMMON_TEXTURE = `${ROOT}/common/texture/`;
 
     const HIDE_MATERIAL_PATTERN = /collision|invisible|occluder|environtment|\$PFD_|\$MFD_|\$DRM_|\$EFB_|\$RegistrationNumber|sunshade|suncover|(?:^FROST$)|(?:^FSS_Tecnam12_Checklist$)|GeoDecalFrosted/i;
@@ -512,11 +510,17 @@
 
     function buildModelList(variantKey, livery) {
       const variant = VARIANTS[variantKey];
-      return [
+      const models = [
         ...getBaseModels(),
         ...variant.models.map((m) => ({ ...m, textureScope: m.textureScope || 'interior' })),
         ...getLiveryModels(livery),
       ];
+      const priority = (model) => {
+        if (model.textureScope === 'interior') return 0;
+        if (model.liveryOnly) return 1;
+        return 2;
+      };
+      return models.sort((a, b) => priority(a) - priority(b));
     }
 
     function liveryMatchesVariant(livery, variantKey) {
@@ -583,6 +587,12 @@
       return [...new Set(bases)];
     }
 
+    function withCacheBust(url) {
+      if (!url || /^(data:|blob:)/i.test(url)) return url;
+      const joiner = url.includes('?') ? '&' : '?';
+      return `${url}${joiner}v=${BUILD_ID}`;
+    }
+
     function createLoader(model, livery, manager) {
       const loader = new GLTFLoader(manager);
       loader.setPath(model.base);
@@ -594,9 +604,9 @@
       loader.manager.setURLModifier((url) => {
         const fileName = url.split('/').pop().split('?')[0];
         if (/\.(png|jpg|jpeg|webp|ktx2)$/i.test(fileName)) {
-          return textureBases[0] + fileName;
+          return withCacheBust(textureBases[0] + fileName);
         }
-        return url;
+        return withCacheBust(url);
       });
 
       return loader;
@@ -1257,7 +1267,7 @@
       for (const base of bases) {
         const url = base + fileName;
         try {
-          const texture = await loader.loadAsync(url);
+          const texture = await loader.loadAsync(withCacheBust(url));
           texture.colorSpace = slot === 'map' || slot === 'emissiveMap'
             ? THREE.SRGBColorSpace
             : THREE.NoColorSpace;
@@ -1380,6 +1390,10 @@
       });
 
       if (loadId !== activeLoadId) return;
+
+      if (failed.length) {
+        console.warn('Some models failed to load:', failed);
+      }
 
       currentRoot = root;
       scene.add(currentRoot);
