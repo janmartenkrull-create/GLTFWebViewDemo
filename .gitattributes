@@ -1,0 +1,2 @@
+# Demo repo: store all assets as regular git blobs (no Git LFS).
+* -filter -diff -merge
